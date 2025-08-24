@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
         return new ApiResponse(401, "JWT Token Expired", null);
     }
 
-    // Validation errors
+    // ✅ Validation errors
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -48,14 +48,14 @@ public class GlobalExceptionHandler {
         return new ApiResponse(400, "Validation failed", errors);
     }
 
-    // Business logic errors (username already exists, invalid role, etc.)
+    // ✅ Business logic errors (username already exists, invalid role, etc.)
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse handleIllegalArgument(IllegalArgumentException ex) {
         return new ApiResponse(400, ex.getMessage(), null);
     }
 
-    // Keep RuntimeException for unexpected cases only
+    // ✅ Keep RuntimeException for unexpected cases only
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponse handleAllExceptions(RuntimeException ex) {

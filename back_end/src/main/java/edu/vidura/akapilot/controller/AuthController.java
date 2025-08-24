@@ -4,6 +4,7 @@ import edu.vidura.akapilot.api.ApiResponse;
 import edu.vidura.akapilot.dto.AuthDTO;
 import edu.vidura.akapilot.dto.RegisterDTO;
 import edu.vidura.akapilot.service.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> registerUser(
-            @RequestBody RegisterDTO registerDTO){
+            @Valid @RequestBody RegisterDTO registerDTO){
         return ResponseEntity.ok(
                 new ApiResponse(
                         200,
@@ -29,7 +30,7 @@ public class AuthController {
         );
     }
     @PostMapping("/signin")
-    public ResponseEntity<ApiResponse> login(@RequestBody AuthDTO authDTO){
+    public ResponseEntity<ApiResponse> login(@Valid @RequestBody AuthDTO authDTO){
         return ResponseEntity.ok(new ApiResponse(200,
                 "OK",authService.authenticate(authDTO)));
     }
