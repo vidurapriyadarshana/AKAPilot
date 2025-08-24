@@ -1,6 +1,6 @@
 package edu.vidura.akapilot.exception;
 
-import edu.vidura.akapilot.dto.ApiResponse;
+import edu.vidura.akapilot.api.ApiResponse;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;

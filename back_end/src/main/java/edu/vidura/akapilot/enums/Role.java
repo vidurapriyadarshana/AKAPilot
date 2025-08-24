@@ -1,4 +1,4 @@
-package edu.vidura.akapilot.entity;
+package edu.vidura.akapilot.enums;
 
 public enum Role {
     USER,

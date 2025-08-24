@@ -3,7 +3,7 @@ package edu.vidura.akapilot.service;
 import edu.vidura.akapilot.dto.AuthDTO;
 import edu.vidura.akapilot.dto.AuthResponseDTO;
 import edu.vidura.akapilot.dto.RegisterDTO;
-import edu.vidura.akapilot.entity.Role;
+import edu.vidura.akapilot.enums.Role;
 import edu.vidura.akapilot.entity.User;
 import edu.vidura.akapilot.repo.UserRepo;
 import edu.vidura.akapilot.util.JwtUtil;

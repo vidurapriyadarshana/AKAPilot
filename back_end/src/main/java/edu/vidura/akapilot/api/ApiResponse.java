@@ -1,4 +1,4 @@
-package edu.vidura.akapilot.dto;
+package edu.vidura.akapilot.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

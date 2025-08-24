@@ -1,6 +1,6 @@
 package edu.vidura.akapilot.controller;
 
-import edu.vidura.akapilot.dto.ApiResponse;
+import edu.vidura.akapilot.api.ApiResponse;
 import edu.vidura.akapilot.dto.AuthDTO;
 import edu.vidura.akapilot.dto.RegisterDTO;
 import edu.vidura.akapilot.service.AuthService;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthService authService;
 
-    @PostMapping("/register")
+    @PostMapping("/signup")
     public ResponseEntity<ApiResponse> registerUser(
             @RequestBody RegisterDTO registerDTO){
         return ResponseEntity.ok(
@@ -28,7 +28,7 @@ public class AuthController {
                 )
         );
     }
-    @PostMapping("/login")
+    @PostMapping("/signin")
     public ResponseEntity<ApiResponse> login(@RequestBody AuthDTO authDTO){
         return ResponseEntity.ok(new ApiResponse(200,
                 "OK",authService.authenticate(authDTO)));
