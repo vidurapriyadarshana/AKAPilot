@@ -61,4 +61,16 @@ public class GlobalExceptionHandler {
     public ApiResponse handleAllExceptions(RuntimeException ex) {
         return new ApiResponse(500, "Internal Server Error", null);
     }
+
+    @ExceptionHandler(SubjectNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiResponse handleSubjectNotFoundException(SubjectNotFoundException ex) {
+        return new ApiResponse(404, ex.getMessage(), null);
+    }
+
+    @ExceptionHandler(OperationNotAllowedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ApiResponse handleOperationNotAllowed(OperationNotAllowedException ex) {
+        return new ApiResponse(403, ex.getMessage(), null);
+    }
 }

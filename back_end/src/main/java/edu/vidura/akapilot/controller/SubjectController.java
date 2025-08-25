@@ -28,5 +28,27 @@ public class SubjectController {
         SubjectsDTO saved = subjectService.saveSubject(subjectsDTO);
         return ResponseEntity.ok(new ApiResponse(200, "Subject saved successfully", saved));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse> getSubject(@PathVariable Long id) {
+        SubjectsDTO subject = subjectService.getSubject(id);
+        return ResponseEntity.ok(new ApiResponse(200, "OK", subject));
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse> updateSubject(
+            @PathVariable Long id,
+            @Valid @RequestBody SubjectsDTO subjectsDTO) {
+
+        SubjectsDTO updated = subjectService.updateSubject(id, subjectsDTO);
+        return ResponseEntity.ok(new ApiResponse(200, "Subject updated successfully", updated));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponse> deleteSubject(@PathVariable Long id) {
+        subjectService.deleteSubject(id);
+        return ResponseEntity.ok(new ApiResponse(200, "Subject deleted successfully", null));
+    }
+
 }
 
