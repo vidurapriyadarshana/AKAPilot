@@ -1,23 +1,32 @@
 package edu.vidura.akapilot.controller;
 
+import edu.vidura.akapilot.api.ApiResponse;
+import edu.vidura.akapilot.dto.SubjectsDTO;
+import edu.vidura.akapilot.service.SubjectService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping ("/subject")
+@RequestMapping("/subject")
 @RequiredArgsConstructor
 public class SubjectController {
 
+    private final SubjectService subjectService;
+
     @GetMapping
-    public String getSubject(){
-        return "Subject";
+    public ResponseEntity<ApiResponse> getSubject() {
+        List<SubjectsDTO> subjectList = subjectService.getAllSubjects();
+        return ResponseEntity.ok(new ApiResponse(200, "OK", subjectList));
     }
 
-    @PostMapping
-    public String postSubject(){
-        return "Subject";
+    @PostMapping("/save")
+    public ResponseEntity<ApiResponse> postSubject(@Valid @RequestBody SubjectsDTO subjectsDTO) {
+        SubjectsDTO saved = subjectService.saveSubject(subjectsDTO);
+        return ResponseEntity.ok(new ApiResponse(200, "Subject saved successfully", saved));
     }
 }
+

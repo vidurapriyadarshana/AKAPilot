@@ -1,0 +1,60 @@
+package edu.vidura.akapilot.service.impl;
+
+import edu.vidura.akapilot.dto.SubjectsDTO;
+import edu.vidura.akapilot.entity.Subjects;
+import edu.vidura.akapilot.entity.User;
+import edu.vidura.akapilot.mapper.SubjectMapper;
+import edu.vidura.akapilot.repo.SubjectRepo;
+import edu.vidura.akapilot.repo.UserRepo;
+import edu.vidura.akapilot.service.SubjectService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class SubjectServiceImpl implements SubjectService {
+
+    private final SubjectRepo subjectRepo;
+    private final UserRepo userRepo;
+
+    @Override
+    public List<SubjectsDTO> getAllSubjects() {
+        // Get logged-in username
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        // Fetch user entity
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        // Fetch all subjects
+        List<Subjects> subjects = subjectRepo.findAllByUser_Id(user.getId());
+
+        // Convert entities → DTOs
+        return subjects.stream()
+                .map(SubjectMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public SubjectsDTO saveSubject(SubjectsDTO subjectsDTO) {
+        // Get logged-in user
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        // Convert DTO → Entity
+        Subjects subjects = SubjectMapper.toEntity(subjectsDTO);
+        subjects.setUser(user);
+
+        // Save entity
+        Subjects saved = subjectRepo.save(subjects);
+
+        // Convert Entity → DTO
+        return SubjectMapper.toDTO(saved);
+    }
+}

@@ -32,6 +32,6 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<ApiResponse> login(@Valid @RequestBody AuthDTO authDTO){
         return ResponseEntity.ok(new ApiResponse(200,
-                "OK",authService.authenticate(authDTO)));
+                "OK", authService.authenticate(authDTO)));
     }
 }
