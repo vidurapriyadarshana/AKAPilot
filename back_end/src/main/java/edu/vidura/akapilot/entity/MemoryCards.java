@@ -22,7 +22,10 @@ public class MemoryCards {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String front;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String back;
 
     @Enumerated(EnumType.STRING)
@@ -36,7 +39,8 @@ public class MemoryCards {
     @UpdateTimestamp                 // updated every time row is updated
     private LocalDateTime updatedAt;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "subjects_id", nullable = false)
     private Subjects subjects;
 
     @OneToMany(mappedBy = "memoryCards", cascade = CascadeType.ALL, orphanRemoval = true)

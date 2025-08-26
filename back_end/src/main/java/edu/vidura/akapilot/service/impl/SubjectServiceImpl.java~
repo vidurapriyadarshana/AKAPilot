@@ -3,6 +3,7 @@ package edu.vidura.akapilot.service.impl;
 import edu.vidura.akapilot.dto.SubjectsDTO;
 import edu.vidura.akapilot.entity.Subjects;
 import edu.vidura.akapilot.entity.User;
+import edu.vidura.akapilot.exception.OperationNotAllowedException;
 import edu.vidura.akapilot.exception.SubjectNotFoundException;
 import edu.vidura.akapilot.mapper.SubjectMapper;
 import edu.vidura.akapilot.repo.SubjectRepo;
@@ -33,7 +34,7 @@ public class SubjectServiceImpl implements SubjectService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         // Fetch all subjects
-        List<Subjects> subjects = subjectRepo.findAllByUser(user);
+        List<Subjects> subjects = subjectRepo.findAll();
 
         // Convert entities → DTOs
         return subjects.stream()
@@ -116,7 +117,7 @@ public class SubjectServiceImpl implements SubjectService {
 
         // Ensure the subject belongs to the logged-in user
         if (!subject.getUser().getId().equals(user.getId())) {
-            throw new RuntimeException("You are not allowed to delete this subject");
+            throw new OperationNotAllowedException("You are not allowed to delete this subject");
         }
 
         // Delete the subject

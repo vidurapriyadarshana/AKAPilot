@@ -73,4 +73,10 @@ public class GlobalExceptionHandler {
     public ApiResponse handleOperationNotAllowed(OperationNotAllowedException ex) {
         return new ApiResponse(403, ex.getMessage(), null);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiResponse handleResourceNotFoundException(ResourceNotFoundException ex) {
+        return new ApiResponse(404, ex.getMessage(), null);
+    }
 }
