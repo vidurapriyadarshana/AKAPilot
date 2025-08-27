@@ -6,7 +6,7 @@ import edu.vidura.akapilot.entity.Subjects;
 
 public class MemoryCardsMapper {
 
-    // Convert entity → DTO
+    // Convert entity → DTO (include id only in response)
     public static MemoryCardsDTO toDTO(MemoryCards memoryCards) {
         if (memoryCards == null) return null;
 
@@ -21,7 +21,7 @@ public class MemoryCardsMapper {
                 .build();
     }
 
-    // Convert DTO → new entity (useful for CREATE only)
+    // Convert DTO → entity (id is auto-generated, not taken from DTO)
     public static MemoryCards toEntity(MemoryCardsDTO dto, Subjects subject) {
         if (dto == null) return null;
 
@@ -30,19 +30,7 @@ public class MemoryCardsMapper {
                 .back(dto.getBack())
                 .status(dto.getStatus())
                 .deadline(dto.getDeadline())
-                .subjects(subject)
+                .subjects(subject) // attach subject entity
                 .build();
     }
-
-    // ✅ Merge DTO → existing entity (for UPDATE)
-    public static void merge(MemoryCardsDTO dto, MemoryCards entity) {
-        if (dto == null || entity == null) return;
-
-        entity.setFront(dto.getFront());
-        entity.setBack(dto.getBack());
-        entity.setStatus(dto.getStatus());
-        entity.setDeadline(dto.getDeadline());
-        // ⚠️ subject is NOT updated here (ownership stays the same)
-    }
 }
-

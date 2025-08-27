@@ -20,7 +20,7 @@ public class SubjectController {
     @GetMapping
     public ResponseEntity<ApiResponse> getSubject() {
         List<SubjectsDTO> subjectList = subjectService.getAllSubjects();
-        return ResponseEntity.ok(new ApiResponse(200, "OK", subjectList));
+        return ResponseEntity.ok(new ApiResponse(200, "Success", subjectList));
     }
 
     @PostMapping("/save")
@@ -32,7 +32,7 @@ public class SubjectController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> getSubject(@PathVariable Long id) {
         SubjectsDTO subject = subjectService.getSubject(id);
-        return ResponseEntity.ok(new ApiResponse(200, "OK", subject));
+        return ResponseEntity.ok(new ApiResponse(200, "Success", subject));
     }
 
     @PutMapping("/update/{id}")

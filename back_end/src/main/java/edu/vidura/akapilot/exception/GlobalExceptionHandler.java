@@ -79,4 +79,10 @@ public class GlobalExceptionHandler {
     public ApiResponse handleResourceNotFoundException(ResourceNotFoundException ex) {
         return new ApiResponse(404, ex.getMessage(), null);
     }
+
+    @ExceptionHandler(MemoryCardNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiResponse handleMemoryCardNotFoundException(MemoryCardNotFoundException ex) {
+        return new ApiResponse(404, ex.getMessage(), null);
+    }
 }

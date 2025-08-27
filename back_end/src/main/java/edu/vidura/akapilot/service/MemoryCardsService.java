@@ -8,4 +8,7 @@ import java.util.List;
 public interface MemoryCardsService {
     MemoryCardsDTO saveMemoryCards(@Valid MemoryCardsDTO memoryCardsDTO);
     List<MemoryCardsDTO> getAllMemoryCards();
+    MemoryCardsDTO updateMemoryCards(Long id, @Valid MemoryCardsDTO memoryCardsDTO);
+    void deleteMemoryCards(Long id);
+    MemoryCardsDTO getMemoryCardsById(Long id);
 }

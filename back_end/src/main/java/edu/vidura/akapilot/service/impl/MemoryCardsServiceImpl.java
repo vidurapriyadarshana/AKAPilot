@@ -4,8 +4,10 @@ import edu.vidura.akapilot.dto.MemoryCardsDTO;
 import edu.vidura.akapilot.entity.MemoryCards;
 import edu.vidura.akapilot.entity.Subjects;
 import edu.vidura.akapilot.entity.User;
+import edu.vidura.akapilot.exception.MemoryCardNotFoundException;
 import edu.vidura.akapilot.exception.OperationNotAllowedException;
 import edu.vidura.akapilot.exception.ResourceNotFoundException;
+import edu.vidura.akapilot.exception.SubjectNotFoundException;
 import edu.vidura.akapilot.mapper.MemoryCardsMapper;
 import edu.vidura.akapilot.repo.MemoryCardsRepo;
 import edu.vidura.akapilot.repo.SubjectRepo;
@@ -25,8 +27,7 @@ public class MemoryCardsServiceImpl implements MemoryCardsService {
     private final MemoryCardsRepo memoryCardsRepo;
     private final SubjectRepo subjectRepo;
     private final UserRepo userRepo;
-
-
+    
     @Override
     public MemoryCardsDTO saveMemoryCards(MemoryCardsDTO memoryCardsDTO) {
 
@@ -68,6 +69,57 @@ public class MemoryCardsServiceImpl implements MemoryCardsService {
                 .toList();
     }
 
+    @Override
+    public MemoryCardsDTO updateMemoryCards(Long id, MemoryCardsDTO memoryCardsDTO) {
+        MemoryCards memoryCard = memoryCardsRepo.findById(id)
+                .orElseThrow(() -> new MemoryCardNotFoundException("Memory card not found with id: " + id));
 
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
+        if (!memoryCard.getSubjects().getUser().getId().equals(user.getId())) {
+            throw new OperationNotAllowedException("You do not own this subject");
+        }
+
+        // ✅ merge DTO into existing entity
+        MemoryCardsMapper.merge(memoryCardsDTO, memoryCard);
+
+        MemoryCards saved = memoryCardsRepo.save(memoryCard);
+        return MemoryCardsMapper.toDTO(saved);
+    }
+
+    @Override
+    public void deleteMemoryCards(Long id) {
+        MemoryCards memoryCard = memoryCardsRepo.findById(id)
+                .orElseThrow(() -> new MemoryCardNotFoundException("Memory card not found with id: " + id));
+
+        // ✅ Ensure only the owner can delete
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        if (!memoryCard.getSubjects().getUser().getId().equals(user.getId())) {
+            throw new OperationNotAllowedException("You do not own this memory card");
+        }
+
+        memoryCardsRepo.delete(memoryCard);
+    }
+
+    @Override
+    public MemoryCardsDTO getMemoryCardsById(Long id) {
+        MemoryCards memoryCard = memoryCardsRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Memory card not found with id: " + id));
+
+        // ✅ Ensure only the owner can access
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        if (!memoryCard.getSubjects().getUser().getId().equals(user.getId())) {
+            throw new OperationNotAllowedException("You do not own this memory card");
+        }
+
+        return MemoryCardsMapper.toDTO(memoryCard);
+    }
 }
