@@ -7,7 +7,6 @@ import edu.vidura.akapilot.entity.User;
 import edu.vidura.akapilot.exception.MemoryCardNotFoundException;
 import edu.vidura.akapilot.exception.OperationNotAllowedException;
 import edu.vidura.akapilot.exception.ResourceNotFoundException;
-import edu.vidura.akapilot.exception.SubjectNotFoundException;
 import edu.vidura.akapilot.mapper.MemoryCardsMapper;
 import edu.vidura.akapilot.repo.MemoryCardsRepo;
 import edu.vidura.akapilot.repo.SubjectRepo;
@@ -27,7 +26,7 @@ public class MemoryCardsServiceImpl implements MemoryCardsService {
     private final MemoryCardsRepo memoryCardsRepo;
     private final SubjectRepo subjectRepo;
     private final UserRepo userRepo;
-    
+
     @Override
     public MemoryCardsDTO saveMemoryCards(MemoryCardsDTO memoryCardsDTO) {
 
