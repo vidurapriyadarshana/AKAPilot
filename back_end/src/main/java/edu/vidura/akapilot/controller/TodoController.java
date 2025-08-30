@@ -26,7 +26,7 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<ApiResponse> getTodo() {
         List<TodosDTO> todoList = todoService.getAllTodo();
-        return ResponseEntity.ok(new ApiResponse(200, "Success", todoService.getAllTodo()));
+        return ResponseEntity.ok(new ApiResponse(200, "Success", todoList));
     }
 
     @GetMapping("/{id}")
