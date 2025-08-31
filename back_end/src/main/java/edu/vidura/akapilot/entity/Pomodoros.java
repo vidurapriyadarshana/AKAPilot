@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -22,6 +23,8 @@ public class Pomodoros {
     private int durationMinutes;
     private int breakMinutes;
     private boolean completed;
+
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @ManyToOne

@@ -2,7 +2,6 @@ package edu.vidura.akapilot.controller;
 
 import edu.vidura.akapilot.api.ApiResponse;
 import edu.vidura.akapilot.dto.StudySessionsDTO;
-import edu.vidura.akapilot.dto.TodosDTO;
 import edu.vidura.akapilot.service.StudySessionsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,0 +1,4 @@
+package edu.vidura.akapilot.dto;
+
+public class PomodorosDto {
+}

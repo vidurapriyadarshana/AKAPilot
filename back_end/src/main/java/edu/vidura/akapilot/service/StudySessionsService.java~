@@ -10,4 +10,6 @@ public interface StudySessionsService {
     StudySessionsDTO createSession(@Valid StudySessionsDTO studySessionsDTO);
     List<StudySessionsDTO> getAllSessions();
     StudySessionsDTO getSessionsById(Long id);
+    StudySessionsDTO updateSession(Long id, StudySessionsDTO dto);
+    void deleteSession(Long id);
 }

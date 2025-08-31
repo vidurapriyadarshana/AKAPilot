@@ -1,13 +1,11 @@
 package edu.vidura.akapilot.service;
 
 import edu.vidura.akapilot.dto.StudySessionsDTO;
-import edu.vidura.akapilot.dto.TodosDTO;
-import jakarta.validation.Valid;
 
 import java.util.List;
 
 public interface StudySessionsService {
-    StudySessionsDTO createSession(@Valid StudySessionsDTO studySessionsDTO);
+    StudySessionsDTO createSession(StudySessionsDTO studySessionsDTO);
     List<StudySessionsDTO> getAllSessions();
     StudySessionsDTO getSessionsById(Long id);
     StudySessionsDTO updateSession(Long id, StudySessionsDTO dto);
