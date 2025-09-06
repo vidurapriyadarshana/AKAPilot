@@ -1,5 +1,7 @@
 package edu.vidura.akapilot.entity;
 
+import edu.vidura.akapilot.enums.Difficulty;
+import edu.vidura.akapilot.enums.Priority;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +22,14 @@ public class Subjects {
     private long id;
     private String name;
     private String color;
+    private String Description;
+
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficulty;
+
+    @Enumerated(EnumType.STRING)
+    private Priority priority;
+
 
     @ManyToOne
     private User user;

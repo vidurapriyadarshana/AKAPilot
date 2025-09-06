@@ -22,6 +22,5 @@ public class RegisterDTO {
     @Email(message = "Email should be valid")
     private String email;
 
-    @NotBlank(message = "User role is mandatory")
     private String role;
 }

@@ -42,20 +42,16 @@ public class AuthServiceImpl implements AuthService {
             throw new IllegalArgumentException("Username already exists");
         }
 
-        // Default role if not provided
-        Role role = registerDTO.getRole() != null ? Role.valueOf(registerDTO.getRole()) : Role.USER;
-
         User user = User.builder()
                 .username(registerDTO.getUsername())
                 .password(passwordEncoder.encode(registerDTO.getPassword()))
-                .role(role)
+                .role(Role.valueOf(registerDTO.getRole()))
                 .email(registerDTO.getEmail())
                 .build();
 
         userRepo.save(user);
         return "User registered successfully";
     }
-
 
 
 }

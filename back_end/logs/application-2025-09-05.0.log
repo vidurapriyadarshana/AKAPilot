@@ -1,0 +1,71 @@
+2025-09-05T21:00:33.855+05:30  INFO 36884 --- [back_end] [main] edu.vidura.akapilot.BackEndApplication   : Starting BackEndApplication using Java 21.0.5 with PID 36884 (D:\IJSE\SECOND SEM\AAD\AKAPilot\back_end\target\classes started by Vidura in D:\IJSE\SECOND SEM\AAD\AKAPilot\back_end)
+2025-09-05T21:00:33.861+05:30 DEBUG 36884 --- [back_end] [main] edu.vidura.akapilot.BackEndApplication   : Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-09-05T21:00:33.862+05:30  INFO 36884 --- [back_end] [main] edu.vidura.akapilot.BackEndApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-09-05T21:00:34.829+05:30  INFO 36884 --- [back_end] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-05T21:00:34.930+05:30  INFO 36884 --- [back_end] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 5 JPA repository interfaces.
+2025-09-05T21:00:36.575+05:30  INFO 36884 --- [back_end] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-05T21:00:36.593+05:30  INFO 36884 --- [back_end] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-05T21:00:36.594+05:30  INFO 36884 --- [back_end] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-09-05T21:00:36.674+05:30  INFO 36884 --- [back_end] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-05T21:00:36.675+05:30  INFO 36884 --- [back_end] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2771 ms
+2025-09-05T21:00:37.009+05:30  INFO 36884 --- [back_end] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-05T21:00:37.099+05:30  INFO 36884 --- [back_end] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-09-05T21:00:37.151+05:30  INFO 36884 --- [back_end] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-05T21:00:37.529+05:30  INFO 36884 --- [back_end] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-05T21:00:37.564+05:30  INFO 36884 --- [back_end] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-05T21:00:38.116+05:30  INFO 36884 --- [back_end] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d7d8911
+2025-09-05T21:00:38.117+05:30  INFO 36884 --- [back_end] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-05T21:00:38.192+05:30  WARN 36884 --- [back_end] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-05T21:00:38.213+05:30  INFO 36884 --- [back_end] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.36
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-05T21:00:39.511+05:30  INFO 36884 --- [back_end] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-05T21:00:39.635+05:30  INFO 36884 --- [back_end] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-05T21:00:40.120+05:30 DEBUG 36884 --- [back_end] [main] edu.vidura.akapilot.util.JwtAuthFilter   : Filter 'jwtAuthFilter' configured for use
+2025-09-05T21:00:40.465+05:30  WARN 36884 --- [back_end] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-05T21:00:40.535+05:30  INFO 36884 --- [back_end] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2025-09-05T21:00:41.522+05:30  INFO 36884 --- [back_end] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-05T21:00:41.530+05:30  INFO 36884 --- [back_end] [main] edu.vidura.akapilot.BackEndApplication   : Started BackEndApplication in 8.377 seconds (process running for 9.522)
+2025-09-05T21:01:02.911+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-05T21:01:02.911+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-05T21:01:02.913+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-09-05T21:01:03.103+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-2] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidura, password=viduraaaa)]
+2025-09-05T21:01:03.103+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-2] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:11.309+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-4] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:11.309+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-4] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:13.049+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-7] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:13.050+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-7] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:13.832+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-6] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:13.832+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-6] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:14.016+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-5] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:14.017+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-5] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:14.177+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-8] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:14.178+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-8] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:14.352+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-9] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:14.352+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-9] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:14.489+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-10] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:14.490+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-10] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:14.662+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-1] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:14.662+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-1] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:14.814+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-2] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:14.815+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-2] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:14.999+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-3] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaaa)]
+2025-09-05T21:01:15.000+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-3] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:32.406+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-6] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaa)]
+2025-09-05T21:01:32.407+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-6] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:32.912+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-5] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidu, password=viduraaa)]
+2025-09-05T21:01:32.913+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-5] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:34.288+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-8] e.vidura.akapilot.aspect.LoggingAspect   : ➡ Entering controller: AuthController.login(..) with arguments: [AuthDTO(username=vidura, password=viduraaa)]
+2025-09-05T21:01:34.288+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-8] e.vidura.akapilot.aspect.LoggingAspect   : ▶ Starting service: AuthServiceImpl.authenticate(..)
+2025-09-05T21:01:34.394+05:30 DEBUG 36884 --- [back_end] [http-nio-8080-exec-8] e.vidura.akapilot.aspect.LoggingAspect   : ⏱ Finished service: AuthServiceImpl.authenticate(..) in 106 ms
+2025-09-05T21:01:34.396+05:30  INFO 36884 --- [back_end] [http-nio-8080-exec-8] e.vidura.akapilot.aspect.LoggingAspect   : ✅ Exiting controller: AuthController.login(..) with result: <200 OK OK,ApiResponse(status=200, message=OK, data=AuthResponseDTO(accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWR1cmEiLCJpYXQiOjE3NTcwODYyOTQsImV4cCI6MTc1NzA4OTg5NH0.8o4LWcmLUu3OlVy4ApBCxUlfv2k4RCNuemAzWPFl73w)),[]>
+2025-09-05T21:02:01.730+05:30  INFO 36884 --- [back_end] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-05T21:02:01.739+05:30  INFO 36884 --- [back_end] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-05T21:02:01.748+05:30  INFO 36884 --- [back_end] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-05T21:02:01.751+05:30  INFO 36884 --- [back_end] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-05T21:02:01.764+05:30  INFO 36884 --- [back_end] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -11,12 +11,21 @@ public class SubjectMapper {
         return Subjects.builder()
                 .name(dto.getName())
                 .color(dto.getColor())
+                .Description(dto.getDescription())
+                .difficulty(dto.getDifficulty())
+                .priority(dto.getPriority())
                 .build();
     }
 
     // Entity → DTO
     public static SubjectsDTO toDTO(Subjects entity) {
         if (entity == null) return null;
-        return new SubjectsDTO(entity.getName(), entity.getColor());
+        return new SubjectsDTO(
+                entity.getName(),
+                entity.getColor(),
+                entity.getDescription(),
+                entity.getDifficulty(),
+                entity.getPriority()
+        );
     }
 }
