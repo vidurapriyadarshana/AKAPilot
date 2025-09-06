@@ -9,14 +9,19 @@ export default function Signup() {
     username: "",
     password: "",
     email: "",
-    role: "",
+    role: "USER", // Default role set to USER
   });
 
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,7 +29,7 @@ export default function Signup() {
     setError("");
 
     // Basic validation
-    if (!form.username || !form.email || !form.password || !form.role) {
+    if (!form.username || !form.email || !form.password || !confirmPassword) {
       setError("All fields are required");
       return;
     }
@@ -32,12 +37,16 @@ export default function Signup() {
       setError("Password must be at least 8 characters");
       return;
     }
+    if (form.password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
 
     try {
       setLoading(true);
       const res = await signup(form);
       if (res.status === 200) {
-        alert("Signup successful! Please log in.");
+        alert("Account created successfully! Please log in.");
         navigate("/login");
       } else {
         setError(res.message || "Signup failed");
@@ -50,66 +59,111 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 py-8">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+        {/* StudyQuest Logo Header */}
+        <div className="flex items-center justify-center mb-8">
+          <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center mr-3">
+            <div className="w-7 h-7 bg-white rounded-sm flex items-center justify-center">
+              <div className="w-4 h-4 border-2 border-slate-700 rounded-sm"></div>
+            </div>
+          </div>
+          <div className="text-left">
+            <h1 className="text-2xl font-semibold text-gray-900">StudyQuest</h1>
+            <p className="text-sm text-gray-500">Learning Management</p>
+          </div>
+        </div>
 
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+        <h2 className="text-2xl font-semibold text-gray-900 text-center mb-6">
+          Create Account
+        </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={form.username}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <select
-            name="role"
-            value={form.role}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="">Select role</option>
-            <option value="USER">USER</option>
-            <option value="ADMIN">ADMIN</option>
-          </select>
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm mb-4">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Username
+            </label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Choose a username"
+              value={form.username}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-700 focus:border-transparent transition-colors"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-700 focus:border-transparent transition-colors"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Create a secure password"
+              value={form.password}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-700 focus:border-transparent transition-colors"
+            />
+            <p className="text-xs text-gray-500 mt-1">
+              Password must be at least 8 characters long
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm your password"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-700 focus:border-transparent transition-colors"
+            />
+          </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className="w-full py-3 px-4 bg-slate-700 text-white font-medium rounded-lg hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-700 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            {loading ? "Signing up..." : "Sign Up"}
+            {loading ? "Creating account..." : "Create Account"}
           </button>
         </form>
 
-        <p className="text-center text-sm mt-4">
-          Already have an account?{" "}
-          <span
-            onClick={() => navigate("/login")}
-            className="text-blue-600 hover:underline cursor-pointer"
-          >
-            Log In
-          </span>
-        </p>
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600">
+            Already have an account?{" "}
+            <span
+              onClick={() => navigate("/login")}
+              className="text-slate-700 hover:text-slate-800 font-medium cursor-pointer hover:underline transition-colors"
+            >
+              Sign in
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
