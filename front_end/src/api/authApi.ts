@@ -1,5 +1,6 @@
 import axios from "axios";
-import type { ApiResponse, AuthDTO, AuthResponseDTO, RegisterDTO } from "../types/auth";
+import type {  AuthDTO, AuthResponseDTO, RegisterDTO } from "../types/auth";
+import type { ApiResponse } from "../types/apiResponse";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080", 

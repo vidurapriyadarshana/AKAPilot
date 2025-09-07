@@ -11,13 +11,6 @@ export interface RegisterDTO {
   role: string;
 }
 
-// Response wrapper (generic)
-export interface ApiResponse<T> {
-  status: number;
-  message: string;
-  data: T;
-}
-
 // Auth-specific response
 export interface AuthResponseDTO {
   accessToken: string;
