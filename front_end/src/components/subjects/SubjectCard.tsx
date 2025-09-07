@@ -1,10 +1,10 @@
+import type { Props } from "@/types/subjects/props";
 import { Book, PlayCircle, Layers } from "lucide-react";
-import type { Props } from "../../types/subjects/Props";
-
+import { Button } from "../ui/button";
 
 const SubjectCard: React.FC<Props> = ({ subject }) => {
   return (
-    <div className="rounded-2xl shadow-card bg-card p-4 flex flex-col gap-4">
+    <div className="rounded-2xl shadow-card bg-card p-4 flex flex-col gap-4 border border-black">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold">{subject.name}</h2>
@@ -19,10 +19,26 @@ const SubjectCard: React.FC<Props> = ({ subject }) => {
 
       {/* Priority + Difficulty */}
       <div className="flex gap-2 text-xs">
-        <span className="px-2 py-1 rounded-full bg-muted text-muted-foreground">
+        <span
+          className={`px-2 py-1 rounded-full text-white ${
+            subject.priority === "HIGH"
+              ? "bg-red-500"
+              : subject.priority === "MEDIUM"
+              ? "bg-yellow-500"
+              : "bg-green-500"
+          }`}
+        >
           {subject.priority} Priority
         </span>
-        <span className="px-2 py-1 rounded-full bg-muted text-muted-foreground">
+        <span
+          className={`px-2 py-1 rounded-full text-white ${
+            subject.difficulty === "HARD"
+              ? "bg-red-600"
+              : subject.difficulty === "MEDIUM"
+              ? "bg-yellow-600"
+              : "bg-green-600"
+          }`}
+        >
           {subject.difficulty}
         </span>
       </div>

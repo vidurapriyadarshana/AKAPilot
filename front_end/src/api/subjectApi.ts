@@ -1,35 +1,29 @@
-import axios from "axios";
-import type { Subject } from "../types/subject";
-import type { ApiResponse } from "../types/apiResponse";
+import type { ApiResponse } from "@/types/apiResponse";
+import api from "./api";
+import type { Subject } from "@/types/subject";
 
-const API_URL = "http://localhost:8080/subject";
-
-// ✅ Get all subjects
 export const getSubjects = async () => {
-  const res = await axios.get<ApiResponse<Subject[]>>(API_URL);
-  return res.data; // ApiResponse<Subject[]>
+  const res = await api.get<ApiResponse<Subject[]>>("/subject");
+  console.log(res);
+  return res.data; 
 };
 
-// ✅ Get a single subject by id
 export const getSubject = async (id: number) => {
-  const res = await axios.get<ApiResponse<Subject>>(`${API_URL}/${id}`);
-  return res.data; // ApiResponse<Subject>
+  const res = await api.get<ApiResponse<Subject>>(`/subject/${id}`);
+  return res.data;
 };
 
-// ✅ Create a subject
 export const createSubject = async (subject: Subject) => {
-  const res = await axios.post<ApiResponse<Subject>>(`${API_URL}/save`, subject);
-  return res.data; // ApiResponse<Subject>
+  const res = await api.post<ApiResponse<Subject>>("/subject/save", subject);
+  return res.data;
 };
 
-// ✅ Update subject
 export const updateSubject = async (id: number, subject: Subject) => {
-  const res = await axios.put<ApiResponse<Subject>>(`${API_URL}/update/${id}`, subject);
-  return res.data; // ApiResponse<Subject>
+  const res = await api.put<ApiResponse<Subject>>(`/subject/update/${id}`, subject);
+  return res.data;
 };
 
-// ✅ Delete subject
 export const deleteSubject = async (id: number) => {
-  const res = await axios.delete<ApiResponse<null>>(`${API_URL}/delete/${id}`);
-  return res.data; // ApiResponse<null>
+  const res = await api.delete<ApiResponse<null>>(`/subject/delete/${id}`);
+  return res.data;
 };
