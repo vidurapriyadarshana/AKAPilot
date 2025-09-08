@@ -48,7 +48,7 @@ const Subjects = () => {
 
       {/* Add Subject Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-card p-6 rounded-2xl shadow-card relative w-full max-w-md">
             <button
               onClick={() => setIsModalOpen(false)}
@@ -56,7 +56,8 @@ const Subjects = () => {
             >
               ✕
             </button>
-            <AddSubjectForm />
+            {/* Pass onSuccess to close popup after adding */}
+            <AddSubjectForm onSuccess={() => setIsModalOpen(false)} />
           </div>
         </div>
       )}

@@ -1,25 +1,34 @@
-import React from 'react';
-import { 
-  Home, 
-  BookOpen, 
-  Brain, 
-  Clock, 
-  Timer, 
-  BarChart3 
-} from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react";
+import {
+  Home,
+  BookOpen,
+  Brain,
+  Clock,
+  Timer,
+  BarChart3,
+  LogOut,
+} from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuthStore } from "@/store/authStore";
 
 const Sidebar = () => {
   const location = useLocation();
-  
+  const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
+
   const navigationItems = [
-    { name: 'Dashboard', icon: Home, path: '/dashboard' },
-    { name: 'Subjects', icon: BookOpen, path: '/subjects' },
-    { name: 'Memory Cards', icon: Brain, path: '/memory-cards' },
-    { name: 'Study Sessions', icon: Clock, path: '/study-session' },
-    { name: 'Pomodoro Timer', icon: Timer, path: '/pomodoro-timer' },
-    { name: 'Analytics', icon: BarChart3, path: '/analytics' },
+    { name: "Dashboard", icon: Home, path: "/dashboard" },
+    { name: "Subjects", icon: BookOpen, path: "/subjects" },
+    { name: "Memory Cards", icon: Brain, path: "/memory-cards" },
+    { name: "Study Sessions", icon: Clock, path: "/study-session" },
+    { name: "Pomodoro Timer", icon: Timer, path: "/pomodoro-timer" },
+    { name: "Analytics", icon: BarChart3, path: "/analytics" },
   ];
+
+  const handleLogout = () => {
+    logout();
+    navigate("/signin"); // redirect to login after logout
+  };
 
   return (
     <div className="w-64 h-screen bg-gray-50 border-r border-gray-200 flex flex-col">
@@ -44,26 +53,26 @@ const Sidebar = () => {
           <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider px-3 mb-3">
             NAVIGATION
           </h2>
-          
+
           <nav className="space-y-1">
             {navigationItems.map((item, index) => {
               const IconComponent = item.icon;
               const isActive = location.pathname === item.path;
-              
+
               return (
                 <Link
                   key={index}
                   to={item.path}
                   className={`flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                     isActive
-                      ? 'bg-slate-700 text-white'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                      ? "bg-slate-700 text-white"
+                      : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                   }`}
                 >
-                  <IconComponent 
+                  <IconComponent
                     className={`mr-3 h-5 w-5 ${
-                      isActive ? 'text-white' : 'text-gray-400'
-                    }`} 
+                      isActive ? "text-white" : "text-gray-400"
+                    }`}
                   />
                   {item.name}
                 </Link>
@@ -72,8 +81,19 @@ const Sidebar = () => {
           </nav>
         </div>
       </div>
+
+      {/* Logout */}
+      <div className="p-4 border-t border-gray-200">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+        >
+          <LogOut className="mr-3 h-5 w-5 text-gray-400" />
+          Logout
+        </button>
+      </div>
     </div>
   );
 };
 
-export default Sidebar
+export default Sidebar;

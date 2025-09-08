@@ -2,14 +2,22 @@ import { useState } from "react";
 import { useSubjectStore } from "@/store/subjectStore";
 import { Button } from "@/components/ui/button";
 
-const AddSubjectForm = () => {
+interface AddSubjectFormProps {
+  onSuccess?: () => void;
+}
+
+const AddSubjectForm: React.FC<AddSubjectFormProps> = ({ onSuccess }) => {
   const { addSubject } = useSubjectStore();
 
   const [name, setName] = useState("");
   const [color, setColor] = useState("#FF5733");
   const [description, setDescription] = useState("");
-  const [difficulty, setDifficulty] = useState<"EASY" | "MEDIUM" | "HARD">("MEDIUM");
-  const [priority, setPriority] = useState<"LOW" | "MEDIUM" | "HIGH">("MEDIUM");
+  const [difficulty, setDifficulty] = useState<"EASY" | "MEDIUM" | "HARD">(
+    "MEDIUM"
+  );
+  const [priority, setPriority] = useState<"LOW" | "MEDIUM" | "HIGH">(
+    "MEDIUM"
+  );
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,6 +39,8 @@ const AddSubjectForm = () => {
     setDescription("");
     setDifficulty("MEDIUM");
     setPriority("MEDIUM");
+
+    if (onSuccess) onSuccess(); // ✅ close modal after success
   };
 
   return (
@@ -77,7 +87,9 @@ const AddSubjectForm = () => {
           <label className="text-sm font-medium">Difficulty</label>
           <select
             value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value as "EASY" | "MEDIUM" | "HARD")}
+            onChange={(e) =>
+              setDifficulty(e.target.value as "EASY" | "MEDIUM" | "HARD")
+            }
             className="p-2 rounded-lg border border-gray-300"
           >
             <option>EASY</option>
@@ -90,7 +102,9 @@ const AddSubjectForm = () => {
           <label className="text-sm font-medium">Priority</label>
           <select
             value={priority}
-            onChange={(e) => setPriority(e.target.value as "LOW" | "MEDIUM" | "HIGH")}
+            onChange={(e) =>
+              setPriority(e.target.value as "LOW" | "MEDIUM" | "HIGH")
+            }
             className="p-2 rounded-lg border border-gray-300"
           >
             <option>LOW</option>
@@ -100,7 +114,12 @@ const AddSubjectForm = () => {
         </div>
       </div>
 
-      <Button type="submit" className="mt-2" variant="default" disabled={loading}>
+      <Button
+        type="submit"
+        className="mt-2"
+        variant="default"
+        disabled={loading}
+      >
         {loading ? "Adding..." : "Add Subject"}
       </Button>
     </form>
