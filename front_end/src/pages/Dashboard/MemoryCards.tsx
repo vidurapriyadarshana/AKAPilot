@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import AddSubjectForm from "@/components/subjects/AddSubjectForm ";
 import { useMemoryCardStore } from "@/store/memorycardStore";
 import MemoryCardItem from "@/components/memorycards/MemoryCardItem";
 import AddMemoryCardForm from "@/components/memorycards/AddMemoryCardForm";
 
-const Subjects = () => {
+const MemoryCards = () => {
   const { memoryCards, fetchMemoryCards, loading, error } = useMemoryCardStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -66,4 +65,4 @@ const Subjects = () => {
   );
 };
 
-export default Subjects;
+export default MemoryCards;

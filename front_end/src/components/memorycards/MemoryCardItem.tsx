@@ -1,5 +1,5 @@
 import type { Props } from "@/types/memorycards/props";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "../ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useSubjectStore } from "@/store/subjectStore";
@@ -22,12 +22,19 @@ import AddMemoryCardForm from "./AddMemoryCardForm";
 import { toast } from "sonner";
 
 const MemoryCardItem: React.FC<Props> = ({ memorycard }) => {
-  const { subjects } = useSubjectStore();
+  const { subjects, fetchSubjects } = useSubjectStore();
   const { removeMemoryCard } = useMemoryCardStore();
-  const subject = subjects.find((s) => s.id === memorycard.subjectId);
-
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+
+  // Fetch subjects if not already loaded
+  useEffect(() => {
+    if (subjects.length === 0) {
+      fetchSubjects().catch(() => toast.error("Failed to load subjects"));
+    }
+  }, [subjects, fetchSubjects]);
+
+  const subject = subjects.find((s) => s.id === memorycard.subjectId);
 
   const handleDelete = async () => {
     try {
@@ -95,8 +102,8 @@ const MemoryCardItem: React.FC<Props> = ({ memorycard }) => {
               ✕
             </button>
             <AddMemoryCardForm
-              memoryCard={memorycard} // prefill form
-              onSuccess={() => setEditOpen(false)} // close modal after update
+              memoryCard={memorycard}
+              onSuccess={() => setEditOpen(false)}
             />
           </div>
         </div>
@@ -112,11 +119,9 @@ const MemoryCardItem: React.FC<Props> = ({ memorycard }) => {
             >
               ✕
             </button>
-
             <h2 className="text-lg font-semibold mb-4">
               Are you sure you want to delete this memory card?
             </h2>
-
             <div className="flex justify-end gap-2 mt-4">
               <button
                 className="px-4 py-2 bg-gray-200 rounded"
