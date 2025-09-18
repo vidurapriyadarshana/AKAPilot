@@ -28,7 +28,7 @@ const Subjects = () => {
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4 mb-6">
         <div className="p-4 rounded-xl bg-card shadow-card">
-          Total Subjects: {subjects.length}
+          Total Subjects: {subjects. length}
         </div>
         <div className="p-4 rounded-xl bg-card shadow-card">Total Cards: 218</div>
         <div className="p-4 rounded-xl bg-card shadow-card">Study Time: 52.1h</div>

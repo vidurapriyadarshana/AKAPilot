@@ -4,7 +4,6 @@ import type { Subject } from "@/types/subject";
 
 export const getSubjects = async () => {
   const res = await api.get<ApiResponse<Subject[]>>("/subject");
-  console.log(res);
   return res.data; 
 };
 

@@ -1,7 +1,7 @@
 // components/Layout.jsx
 import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import { Toaster } from "sonner";
 
 export default function Layout() {
   return (
@@ -22,6 +22,7 @@ export default function Layout() {
             <Outlet />
           </div>
         </main>
+         <Toaster position="bottom-right" richColors />
       </div>
     </div>
   );
