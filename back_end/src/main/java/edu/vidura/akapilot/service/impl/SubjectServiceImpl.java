@@ -86,23 +86,27 @@ public class SubjectServiceImpl implements SubjectService {
         User user = userRepo.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        // Find the subject by id and ensure it belongs to the logged-in user
+        // Find the subject by id
         Subjects subject = subjectRepo.findById(id)
                 .orElseThrow(() -> new SubjectNotFoundException("Subject not found"));
 
+        // Ensure subject belongs to logged-in user
         if (!subject.getUser().getId().equals(user.getId())) {
             throw new RuntimeException("You are not allowed to update this subject");
         }
 
-        // Update fields
-        subject.setName(subjectsDTO.getName());
-        subject.setColor(subjectsDTO.getColor());
+        // Map DTO → Entity (but keep id + user from existing entity)
+        Subjects updatedSubject = SubjectMapper.toEntity(subjectsDTO);
+        updatedSubject.setId(subject.getId());   // keep original id
+        updatedSubject.setUser(subject.getUser()); // preserve relationship to user
 
         // Save updated entity
-        Subjects saved = subjectRepo.save(subject);
+        Subjects saved = subjectRepo.save(updatedSubject);
 
+        // Return as DTO
         return SubjectMapper.toDTO(saved);
     }
+
 
     @Override
     public void deleteSubject(Long id) {

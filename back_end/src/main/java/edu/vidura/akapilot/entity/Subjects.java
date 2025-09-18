@@ -22,7 +22,7 @@ public class Subjects {
     private long id;
     private String name;
     private String color;
-    private String Description;
+    private String description;
 
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;

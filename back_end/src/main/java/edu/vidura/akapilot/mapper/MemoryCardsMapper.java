@@ -11,6 +11,7 @@ public class MemoryCardsMapper {
         if (memoryCards == null) return null;
 
         return MemoryCardsDTO.builder()
+                .id(memoryCards.getId())
                 .front(memoryCards.getFront())
                 .back(memoryCards.getBack())
                 .status(memoryCards.getStatus())

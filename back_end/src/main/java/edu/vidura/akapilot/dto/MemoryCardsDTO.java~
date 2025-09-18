@@ -16,8 +16,6 @@ import java.time.LocalDateTime;
 @Builder
 public class MemoryCardsDTO {
 
-    private Long id;
-
     @NotBlank(message = "Front (question) cannot be blank")
     private String front;
 

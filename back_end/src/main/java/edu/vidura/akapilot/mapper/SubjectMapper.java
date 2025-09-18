@@ -9,9 +9,10 @@ public class SubjectMapper {
     public static Subjects toEntity(SubjectsDTO dto) {
         if (dto == null) return null;
         return Subjects.builder()
+                .id(dto.getId() != null ? dto.getId() : 0L) // handle optional id
                 .name(dto.getName())
                 .color(dto.getColor())
-                .Description(dto.getDescription())
+                .description(dto.getDescription()) // fixed case
                 .difficulty(dto.getDifficulty())
                 .priority(dto.getPriority())
                 .build();
@@ -20,12 +21,13 @@ public class SubjectMapper {
     // Entity → DTO
     public static SubjectsDTO toDTO(Subjects entity) {
         if (entity == null) return null;
-        return new SubjectsDTO(
-                entity.getName(),
-                entity.getColor(),
-                entity.getDescription(),
-                entity.getDifficulty(),
-                entity.getPriority()
-        );
+        SubjectsDTO dto = new SubjectsDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setColor(entity.getColor());
+        dto.setDescription(entity.getDescription()); // fixed case
+        dto.setDifficulty(entity.getDifficulty());
+        dto.setPriority(entity.getPriority());
+        return dto;
     }
 }

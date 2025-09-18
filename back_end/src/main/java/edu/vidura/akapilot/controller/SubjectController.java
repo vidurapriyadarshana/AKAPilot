@@ -39,7 +39,8 @@ public class SubjectController {
     public ResponseEntity<ApiResponse> updateSubject(
             @PathVariable Long id,
             @Valid @RequestBody SubjectsDTO subjectsDTO) {
-
+        System.out.println(subjectsDTO);
+        System.out.println(id);
         SubjectsDTO updated = subjectService.updateSubject(id, subjectsDTO);
         return ResponseEntity.ok(new ApiResponse(200, "Subject updated successfully", updated));
     }

@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class SubjectsDTO {
 
+    private Long id;
+
     @NotBlank(message = "Name is mandatory")
     private String name;
 
