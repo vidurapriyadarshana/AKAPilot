@@ -27,6 +27,7 @@ public class TodosMapper {
         if (entity == null) return null;
 
         return new TodosDTO(
+                entity.getId(),
                 entity.getTitle(),
                 entity.getDescription(),
                 entity.getDueDate(),

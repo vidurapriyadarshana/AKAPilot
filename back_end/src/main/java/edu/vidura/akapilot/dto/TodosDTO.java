@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 @Data
 public class TodosDTO {
 
+    private  Long id;
+
     @NotBlank(message = "Title is mandatory")
     private String title;
 

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +20,9 @@ public class CardReviews {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @UpdateTimestamp
     private LocalDateTime reviewDate;
+
     private boolean success;
 
     @ManyToOne

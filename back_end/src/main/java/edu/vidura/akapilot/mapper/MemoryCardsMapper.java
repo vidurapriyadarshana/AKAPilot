@@ -43,7 +43,6 @@ public class MemoryCardsMapper {
         entity.setBack(dto.getBack());
         entity.setStatus(dto.getStatus());
         entity.setDeadline(dto.getDeadline());
-        // ⚠️ subject is NOT updated here (ownership stays the same)
     }
 }
 
