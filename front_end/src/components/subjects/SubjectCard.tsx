@@ -47,24 +47,24 @@ const SubjectCard: React.FC<Props> = ({ subject }) => {
       {/* Header */}
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-xl">{subject.name}</CardTitle>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className="p-1 rounded-md hover:bg-muted transition">
-              <EllipsisVertical size={20} />
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-32">
-            <DropdownMenuItem onClick={() => setEditOpen(true)}>
-              <Pencil size={16} className="mr-2" /> Edit
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => setDeleteOpen(true)}
-              className="text-red-600 focus:text-red-600"
-            >
-              <Trash2 size={16} className="mr-2" /> Delete
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="p-1 rounded-md hover:bg-muted transition">
+                <EllipsisVertical size={20} />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-32">
+              <DropdownMenuItem onClick={() => setEditOpen(true)}>
+                <Pencil size={16} className="mr-2" /> Edit
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => setDeleteOpen(true)}
+                className="text-red-600 focus:text-red-600"
+              >
+                <Trash2 size={16} className="mr-2" /> Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
       </CardHeader>
 
       {/* Description */}
