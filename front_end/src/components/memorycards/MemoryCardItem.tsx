@@ -1,9 +1,12 @@
+"use client";
+
 import type { Props } from "@/types/memorycards/props";
 import React, { useState, useEffect } from "react";
 import { Card } from "../ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useSubjectStore } from "@/store/subjectStore";
 import { useMemoryCardStore } from "@/store/memorycardStore";
+import { useCardReviewStore } from "@/store/cardReviewStore";
 import {
   Dialog,
   DialogContent,
@@ -17,13 +20,15 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { EllipsisVertical, Pencil, Trash2 } from "lucide-react";
+import { Check, EllipsisVertical, Pencil, Trash2, X } from "lucide-react";
 import AddMemoryCardForm from "./AddMemoryCardForm";
 import { toast } from "sonner";
+import { Button } from "../ui/button";
 
 const MemoryCardItem: React.FC<Props> = ({ memorycard }) => {
   const { subjects, fetchSubjects } = useSubjectStore();
   const { removeMemoryCard } = useMemoryCardStore();
+  const { addCardReview } = useCardReviewStore();
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
@@ -42,6 +47,18 @@ const MemoryCardItem: React.FC<Props> = ({ memorycard }) => {
       setDeleteOpen(false);
     } catch (err) {
       toast.error("Failed to delete memory card");
+    }
+  };
+
+  const handleReview = async (success: boolean) => {
+    try {
+      await addCardReview({
+        memoryCardId: memorycard.id,
+        success,
+      });
+      toast.success(`Marked as ${success ? "Correct" : "Incorrect"}`);
+    } catch {
+      toast.error("Failed to submit review");
     }
   };
 
@@ -81,12 +98,33 @@ const MemoryCardItem: React.FC<Props> = ({ memorycard }) => {
           </Card>
         </DialogTrigger>
 
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md rounded-2xl p-6 bg-card shadow-lg">
           <DialogHeader>
-            <DialogTitle>Answer</DialogTitle>
+            <DialogTitle className="text-xl font-bold text-center">Answer</DialogTitle>
           </DialogHeader>
-          <div className="p-2">
+
+          <div className="my-4 p-4 bg-muted rounded-lg text-center">
             <h2 className="text-lg font-semibold">{memorycard.back}</h2>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex justify-between gap-4 mt-6">
+            <Button
+              variant="destructive"
+              size="default"
+              className="flex-1 flex items-center justify-center gap-2"
+              onClick={() => handleReview(false)}
+            >
+              <X size={18} /> Incorrect
+            </Button>
+            <Button
+              variant="default"
+              size="default"
+              className="flex-1 flex items-center justify-center gap-2"
+              onClick={() => handleReview(true)}
+            >
+              <Check size={18} /> Correct
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

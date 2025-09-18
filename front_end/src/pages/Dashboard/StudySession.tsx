@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useTodoStore } from "@/store/todoStore";
 import TodoCard from "@/components/todo/TodoCard";
+import AddTodoDialog from "@/components/todo/AddTodoDialog";
 
 const StudySession = () => {
   const { todos, fetchTodos, loading, error } = useTodoStore();
@@ -29,14 +30,15 @@ const StudySession = () => {
 
       {/* Todos Grid */}
       <div>
-        <div className="mb-6">
+        <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold">Todos</h1>
+          <AddTodoDialog />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {todos.map((todo) => (
-          <TodoCard key={todo.id} todo={todo} />
-        ))}
-      </div>
+          {todos.map((todo) => (
+            <TodoCard key={todo.id} todo={todo} />
+          ))}
+        </div>
       </div>
     </div>
   );
