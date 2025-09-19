@@ -2,6 +2,7 @@ package edu.vidura.akapilot.controller;
 
 import edu.vidura.akapilot.api.ApiResponse;
 import edu.vidura.akapilot.dto.StudySessionsDTO;
+import edu.vidura.akapilot.dto.StudySummaryDTO;
 import edu.vidura.akapilot.service.StudySessionsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -51,4 +52,16 @@ public class StudySessionsController {
         return ResponseEntity.ok(new ApiResponse(200, "Study session deleted successfully", null));
     }
 
+    @GetMapping("/summary/{userId}")
+    public ResponseEntity<ApiResponse> getStudyHoursSummary(@PathVariable Long userId) {
+        List<StudySummaryDTO> summary = studySessionsService.getTotalStudyHoursBySubject(userId);
+        return ResponseEntity.ok(new ApiResponse(200, "Study hours summary", summary));
+    }
+
+    @GetMapping("/today")
+    public ResponseEntity<ApiResponse> getTodaySessions() {
+        List<StudySessionsDTO> sessions = studySessionsService.getTodaysSessions();
+        System.out.println(sessions);
+        return ResponseEntity.ok(new ApiResponse(200, "Today's sessions", sessions));
+    }
 }

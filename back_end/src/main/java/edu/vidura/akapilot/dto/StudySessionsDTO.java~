@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class StudySessionsDTO {
 
-    private Long id;
-
     @NotNull(message = "Start time is required")
     private LocalDateTime startTime;
 

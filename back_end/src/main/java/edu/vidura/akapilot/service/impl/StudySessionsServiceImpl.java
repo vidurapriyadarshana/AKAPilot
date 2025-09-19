@@ -1,6 +1,7 @@
 package edu.vidura.akapilot.service.impl;
 
 import edu.vidura.akapilot.dto.StudySessionsDTO;
+import edu.vidura.akapilot.dto.StudySummaryDTO;
 import edu.vidura.akapilot.dto.TodosDTO;
 import edu.vidura.akapilot.entity.StudySessions;
 import edu.vidura.akapilot.entity.Subjects;
@@ -19,7 +20,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -171,6 +176,47 @@ public class StudySessionsServiceImpl implements StudySessionsService {
 
         // 4️⃣ Delete
         studySessionsRepo.delete(session);
+    }
+
+    public List<StudySummaryDTO> getTotalStudyHoursBySubject(Long userId) {
+        List<Object[]> sessions = studySessionsRepo.findSessionsWithSubject(userId);
+        Map<Long, StudySummaryDTO> map = new HashMap<>();
+
+        for (Object[] row : sessions) {
+            Long subjectId = (Long) row[0];
+            String subjectName = (String) row[1];
+            LocalDateTime start = (LocalDateTime) row[2];
+            LocalDateTime end = (LocalDateTime) row[3];
+
+            long minutes = java.time.Duration.between(start, end).toMinutes();
+
+            map.compute(subjectId, (k, v) -> {
+                if (v == null) return new StudySummaryDTO(subjectId, subjectName, minutes);
+                v.setTotalStudyMinutes(v.getTotalStudyMinutes() + minutes);
+                return v;
+            });
+        }
+
+
+        return new ArrayList<>(map.values());
+    }
+
+    @Override
+    public List<StudySessionsDTO> getTodaysSessions() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        LocalDateTime startOfDay = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0);
+        LocalDateTime endOfDay = startOfDay.plusDays(1);
+
+        List<StudySessions> sessions = studySessionsRepo.findAllByUser_IdAndStartTimeBetween(
+                user.getId(), startOfDay, endOfDay
+        );
+
+        return sessions.stream()
+                .map(StudySessionsMapper::toDTO)
+                .toList();
     }
 
 

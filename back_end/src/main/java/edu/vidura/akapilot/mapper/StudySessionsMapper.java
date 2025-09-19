@@ -23,6 +23,7 @@ public class StudySessionsMapper {
     // Convert Entity -> DTO
     public static StudySessionsDTO toDTO(StudySessions entity) {
         return new StudySessionsDTO(
+                entity.getId(),
                 entity.getStartTime(),
                 entity.getEndTime(),
                 entity.getNotes(),
