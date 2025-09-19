@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
+
 import type { Priority } from "@/types/todo";
 
 const AddTodoDialog = () => {
@@ -63,51 +63,63 @@ const AddTodoDialog = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Add Todo</Button>
+        <Button variant="default" className="px-6 py-2">
+          Add Todo
+        </Button>
       </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Add a New Todo</DialogTitle>
-          <DialogDescription>
-            Fill in the details for your new study task.
+      <DialogContent className="max-w-lg rounded-2xl p-6 bg-card shadow-lg">
+        <DialogHeader className="text-center mb-4">
+          <DialogTitle className="text-2xl font-bold">Add a New Todo</DialogTitle>
+          <DialogDescription className="text-sm text-muted-foreground">
+            Fill in the details for your study task
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
-          <div>
-            <Label>Title</Label>
+          {/* Title */}
+          <div className="flex flex-col gap-1">
+            <Label htmlFor="title">Title</Label>
             <Input
+              id="title"
               value={form.title}
               onChange={(e) => handleChange("title", e.target.value)}
               placeholder="e.g. Finish math homework"
+              className="rounded-lg"
             />
           </div>
 
-          <div>
-            <Label>Description</Label>
+          {/* Description */}
+          <div className="flex flex-col gap-1">
+            <Label htmlFor="description">Description</Label>
             <Input
+              id="description"
               value={form.description}
               onChange={(e) => handleChange("description", e.target.value)}
               placeholder="e.g. Solve algebra exercises"
+              className="rounded-lg"
             />
           </div>
 
-          <div>
-            <Label>Due Date</Label>
+          {/* Due Date */}
+          <div className="flex flex-col gap-1">
+            <Label htmlFor="dueDate">Due Date</Label>
             <Input
+              id="dueDate"
               type="datetime-local"
               value={form.dueDate}
               onChange={(e) => handleChange("dueDate", e.target.value)}
+              className="rounded-lg"
             />
           </div>
 
-          <div>
-            <Label>Priority</Label>
+          {/* Priority */}
+          <div className="flex flex-col gap-1">
+            <Label htmlFor="priority">Priority</Label>
             <Select
               value={form.priority}
               onValueChange={(val) => handleChange("priority", val as Priority)}
             >
-              <SelectTrigger>
+              <SelectTrigger className="rounded-lg">
                 <SelectValue placeholder="Select priority" />
               </SelectTrigger>
               <SelectContent>
@@ -118,13 +130,14 @@ const AddTodoDialog = () => {
             </Select>
           </div>
 
-          <div>
-            <Label>Subject</Label>
+          {/* Subject */}
+          <div className="flex flex-col gap-1">
+            <Label htmlFor="subject">Subject</Label>
             <Select
               value={form.subjectId ? String(form.subjectId) : ""}
               onValueChange={(val) => handleChange("subjectId", Number(val))}
             >
-              <SelectTrigger>
+              <SelectTrigger className="rounded-lg">
                 <SelectValue placeholder="Select subject" />
               </SelectTrigger>
               <SelectContent>
@@ -138,8 +151,10 @@ const AddTodoDialog = () => {
           </div>
         </div>
 
-        <DialogFooter>
-          <Button onClick={handleSubmit}>Create</Button>
+        <DialogFooter className="mt-6 flex justify-end">
+          <Button variant="default" onClick={handleSubmit} className="px-6 py-2 rounded-lg">
+            Create
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
