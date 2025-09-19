@@ -6,7 +6,6 @@ import edu.vidura.akapilot.entity.Subjects;
 import edu.vidura.akapilot.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -15,11 +14,7 @@ public interface CardReviewsRepo extends JpaRepository<CardReviews, Long> {
 
     List<CardReviews> findByMemoryCards(MemoryCards memoryCards);
 
-    @Query("SELECT c.memoryCards.id, c.memoryCards.front, " +
-            "SUM(CASE WHEN c.success = true THEN 1 ELSE 0 END), " +
-            "COUNT(c), MAX(c.reviewDate) " +
-            "FROM CardReviews c " +
-            "WHERE c.user.id = :userId " +
-            "GROUP BY c.memoryCards.id, c.memoryCards.front")
-    List<Object[]> getSuccessRateAndLastReviewByUser(@Param("userId") Long userId);
+    
+
+    List<Object[]> getSuccessRateAndLastReviewByUser(Long id);
 }
