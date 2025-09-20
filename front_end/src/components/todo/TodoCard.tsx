@@ -1,132 +1,66 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import type { Todo } from "@/types/todo";
-import { useSubjectStore } from "@/store/subjectStore";
-import { useTodoStore } from "@/store/todoStore";
-import { toast } from "sonner";
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import {
-  EllipsisVertical,
-  Pencil,
-  Trash2,
-  CircleCheck,
-  CircleCheckBig,
-} from "lucide-react";
+  Card,
+  CardHeader,
+  CardContent,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { CalendarDays } from "lucide-react";
+import TodoForm from "./TodoForm";
+import { useTodoStore } from "@/store/todoStore";
 
 interface TodoCardProps {
-  todo: Todo;
+  todo: any;
 }
 
-const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
-  const { subjects, fetchSubjects } = useSubjectStore();
-  const { removeTodo, editTodo } = useTodoStore();
+export default function TodoCard({ todo }: TodoCardProps) {
+  const { removeTodo } = useTodoStore();
 
-  const [editOpen, setEditOpen] = useState(false);
-  const [deleteOpen, setDeleteOpen] = useState(false);
-
-  useEffect(() => {
-    if (subjects.length === 0) {
-      fetchSubjects().catch(() => toast.error("Failed to load subjects"));
-    }
-  }, [subjects, fetchSubjects]);
-
-  const subject = subjects.find((s) => s.id === todo.subjectId);
-
-  const getStatusVariant = (completed: boolean) =>
-    completed ? "default" : "outline";
-
-  const getPriorityVariant = (priority: string) => {
-    switch (priority) {
-      case "HIGH":
-        return "destructive";
-      case "MEDIUM":
-        return "secondary";
-      case "LOW":
-      default:
-        return "default";
-    }
-  };
-
-  const handleDelete = async () => {
-    if (todo.id) {
-      await removeTodo(todo.id);
-    }
-  };
-
-  const handleToggleComplete = async () => {
-    if (todo.id) {
-      await editTodo(todo.id, { ...todo, completed: !todo.completed });
-    }
-  };
+  const priorityColor =
+    todo.priority === "HIGH"
+      ? "destructive"
+      : todo.priority === "MEDIUM"
+      ? "default"
+      : "secondary";
 
   return (
-    <Card className="hover:shadow-lg transition relative flex flex-col justify-between">
-      {/* Dropdown Menu */}
-      
-
-      <CardHeader className="flex flex-col gap-2">
+    <Card className="shadow-sm rounded-2xl">
+      <CardHeader>
         <div className="flex justify-between items-center">
-          <CardTitle className="text-base md:text-lg">{todo.title}</CardTitle>
-          <div className="ml-2 flex gap-2">
-            <Badge variant={getPriorityVariant(todo.priority)} className="text-xs">
-              {todo.priority}
-            </Badge>
-            <Badge variant={getStatusVariant(todo.completed)} className="text-xs">
-              {todo.completed ? "Completed" : "Pending"}
-            </Badge>
-          </div>
+          <CardTitle className="text-lg font-semibold">{todo.title}</CardTitle>
+          <Badge variant={priorityColor}>{todo.priority}</Badge>
         </div>
+        <CardDescription>{todo.subjectName || "No subject"}</CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-2">
-        <p className="text-sm text-gray-600">{todo.description}</p>
-        <p className="text-xs text-muted-foreground">
-          Subject: {subject ? subject.name : "Loading..."}
-        </p>
-        <p className="text-xs text-muted-foreground">
-          Due: {new Date(todo.dueDate).toLocaleString()}
-        </p>
+      <CardContent className="space-y-4">
+        <p className="text-sm text-muted-foreground">{todo.description}</p>
+
+        {todo.dueDate && (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <CalendarDays size={16} />
+            {new Date(todo.dueDate).toLocaleString()}
+          </div>
+        )}
+
+        <div className="flex gap-2 mt-4">
+          <Button size="sm" variant="default">
+            Start Study Session
+          </Button>
+          <TodoForm todoId={todo.id} />
+          <Button
+            size="sm"
+            variant="destructive"
+            onClick={() => removeTodo(todo.id)}
+          >
+            Delete
+          </Button>
+        </div>
       </CardContent>
-
-      {/* Bottom Action Buttons */}
-      <CardFooter className="flex items-center gap-4">
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-red-600 hover:text-red-700 hover:bg-red-50"
-          onClick={handleDelete}
-        >
-          <Trash2 size={16} className="mr-1" /> Delete
-        </Button>
-
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-green-600 hover:text-green-700 hover:bg-green-50"
-          onClick={handleToggleComplete}
-        >
-          {todo.completed ? (
-            <>
-              <CircleCheckBig size={20} className="mr-1 text-green-600" /> Done
-            </>
-          ) : (
-            <>
-              <CircleCheck size={20} className="mr-1" /> Mark as Completed
-            </>
-          )}
-        </Button>
-      </CardFooter>
     </Card>
   );
-};
-
-export default TodoCard;
+}

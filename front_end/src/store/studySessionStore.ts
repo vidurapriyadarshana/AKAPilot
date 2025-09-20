@@ -1,15 +1,8 @@
 import { create } from "zustand";
-import {
-  createStudySession,
-  getAllStudySessions,
-  getStudySessionById,
-  updateStudySession,
-  deleteStudySession,
-  getStudySummary,
-  getTodaysSessions,
-} from "@/api/studySessionApi";
+
 import type { StudySessionsDTO, StudySummaryDTO } from "@/types/studysession";
 import { toast } from "sonner";
+import { createStudySession, deleteStudySession, getAllStudySessions, getStudySessionById, getStudySummary, getTodaysSessions, updateStudySession } from "@/api/studysessionApi";
 
 interface StudySessionState {
   sessions: StudySessionsDTO[];
