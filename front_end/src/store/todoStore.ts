@@ -20,6 +20,7 @@ interface TodoState {
   addTodo: (todo: Todo) => Promise<void>;
   editTodo: (id: number, todo: Todo) => Promise<void>;
   removeTodo: (id: number) => Promise<void>;
+  completeTodo: (id: number) => Promise<void>;
 }
 
 export const useTodoStore = create<TodoState>((set) => ({
@@ -88,6 +89,22 @@ export const useTodoStore = create<TodoState>((set) => ({
       toast.success("Todo deleted successfully");
     } catch (err) {
       toast.error("Failed to delete todo");
+    }
+  },
+
+  // Complete todo
+  completeTodo: async (id) => {
+    try {
+      const todo = await getTodoById(id);
+      const updatedTodo = { ...todo.data, completed: true };
+      const res = await updateTodo(id, updatedTodo);
+      set((state) => ({
+        todos: state.todos.map((t) => (t.id === id ? res.data : t)),
+        currentTodo: state.currentTodo?.id === id ? res.data : state.currentTodo,
+      }));
+      toast.success("Todo completed successfully");
+    } catch (err) {
+      toast.error("Failed to complete todo");
     }
   },
 }));

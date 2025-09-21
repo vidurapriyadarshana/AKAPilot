@@ -26,7 +26,7 @@ export default function StudySessionPage() {
     fetchSessions
   } = useStudySessionStore();
   const { subjects, fetchSubjects } = useSubjectStore();
-  const { todos, fetchTodos } = useTodoStore();
+  const { todos, fetchTodos, completeTodo } = useTodoStore();
 
   // Update time every second
   useEffect(() => {
@@ -118,10 +118,17 @@ export default function StudySessionPage() {
         console.log('Creating session with data:', sessionData); // Debug log
         
         await addSession(sessionData);
+        
+        // Mark todo as completed if there's a current todo
+        if (currentTodoId) {
+          await completeTodo(currentTodoId);
+        }
+        
         toast.success("Study session ended and saved!");
         
-        // Refresh sessions
+        // Refresh sessions and todos
         fetchSessions();
+        fetchTodos();
       } catch (error) {
         console.error('Session creation error:', error); // Debug log
         toast.error("Failed to save study session");
