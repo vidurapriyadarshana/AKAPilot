@@ -2,7 +2,8 @@ import { create } from "zustand";
 import { toast } from "sonner";
 import type { Pomodoro } from "@/types/pomodoro";
 import {
-  getPomodorosBySession,
+  getPomodorosBySubject,
+  getAllPomodorosByUser,
   createPomodoro,
   updatePomodoro,
   deletePomodoro,
@@ -10,10 +11,12 @@ import {
 
 interface PomodoroState {
   pomodoros: Pomodoro[];
+  allPomodoros: Pomodoro[];
   loading: boolean;
   error: string | null;
 
-  fetchPomodorosBySession: (sessionId: number) => Promise<void>;
+  fetchPomodorosBySubject: (subjectId: number) => Promise<void>;
+  fetchAllPomodorosByUser: () => Promise<void>;
   addPomodoro: (pomodoro: Pomodoro) => Promise<void>;
   editPomodoro: (id: number, pomodoro: Pomodoro) => Promise<void>;
   removePomodoro: (id: number) => Promise<void>;
@@ -21,14 +24,26 @@ interface PomodoroState {
 
 export const usePomodoroStore = create<PomodoroState>((set) => ({
   pomodoros: [],
+  allPomodoros: [],
   loading: false,
   error: null,
 
-  fetchPomodorosBySession: async (sessionId) => {
+  fetchPomodorosBySubject: async (subjectId) => {
     try {
       set({ loading: true });
-      const res = await getPomodorosBySession(sessionId);
+      const res = await getPomodorosBySubject(subjectId);
       set({ pomodoros: res.data, loading: false });
+    } catch (err) {
+      toast.error("Failed to load pomodoros");
+      set({ loading: false });
+    }
+  },
+
+  fetchAllPomodorosByUser: async () => {
+    try {
+      set({ loading: true });
+      const res = await getAllPomodorosByUser();
+      set({ allPomodoros: res.data, loading: false });
     } catch (err) {
       toast.error("Failed to load pomodoros");
       set({ loading: false });

@@ -41,7 +41,7 @@ const Sidebar = () => {
             </div>
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-gray-900">StudyQuest</h1>
+            <h1 className="text-xl font-semibold text-gray-900">AKAPilot</h1>
             <p className="text-sm text-gray-500">Learning Management</p>
           </div>
         </div>

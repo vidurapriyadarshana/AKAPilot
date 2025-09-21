@@ -2,9 +2,15 @@ import type { ApiResponse } from "@/types/apiResponse";
 import api from "./api";
 import type { Pomodoro } from "@/types/pomodoro";
 
-// Get all pomodoros for a session
-export const getPomodorosBySession = async (sessionId: number) => {
-  const res = await api.get<ApiResponse<Pomodoro[]>>(`/pomodoros/session/${sessionId}`);
+// Get all pomodoros for a subject
+export const getPomodorosBySubject = async (subjectId: number) => {
+  const res = await api.get<ApiResponse<Pomodoro[]>>(`/pomodoros/subject/${subjectId}`);
+  return res.data;
+};
+
+// Get all pomodoros for the current user
+export const getAllPomodorosByUser = async () => {
+  const res = await api.get<ApiResponse<Pomodoro[]>>(`/pomodoros/user`);
   return res.data;
 };
 

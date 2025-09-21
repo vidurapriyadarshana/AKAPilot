@@ -44,7 +44,7 @@ export default function Login() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
-        {/* StudyQuest Logo Header */}
+        {/* AKAPilot Logo Header */}
         <div className="flex items-center justify-center mb-8">
           <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center mr-3">
             <div className="w-7 h-7 bg-white rounded-sm flex items-center justify-center">
@@ -52,7 +52,7 @@ export default function Login() {
             </div>
           </div>
           <div className="text-left">
-            <h1 className="text-2xl font-semibold text-gray-900">StudyQuest</h1>
+            <h1 className="text-2xl font-semibold text-gray-900">AKAPilot</h1>
             <p className="text-sm text-gray-500">Learning Management</p>
           </div>
         </div>

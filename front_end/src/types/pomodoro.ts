@@ -4,5 +4,5 @@ export interface Pomodoro {
   breakMinutes: number;     // required
   completed: boolean;       // required
   createdAt?: string;       // optional, auto-set by backend
-  studySessionId: number;   // required
+  subjectId: number;        // required, the subject this pomodoro belongs to
 }
