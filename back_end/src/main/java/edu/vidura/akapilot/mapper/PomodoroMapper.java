@@ -2,35 +2,28 @@ package edu.vidura.akapilot.mapper;
 
 import edu.vidura.akapilot.dto.PomodorosDTO;
 import edu.vidura.akapilot.entity.Pomodoros;
-import edu.vidura.akapilot.entity.StudySessions;
+import edu.vidura.akapilot.entity.Subjects;
+import edu.vidura.akapilot.entity.User;
 
 public class PomodoroMapper {
 
-    /**
-     * Convert DTO → Entity
-     */
-    public static Pomodoros toEntity(PomodorosDTO dto, StudySessions studySession) {
-        if (dto == null) {
-            return null;
-        }
+    // Convert DTO → Entity including user and subject
+    public static Pomodoros toEntity(PomodorosDTO dto, Subjects subject, User user) {
+        if (dto == null) return null;
 
         return Pomodoros.builder()
-                .id(dto.getId() != null ? dto.getId() : 0) // handle optional ID
+                .id(dto.getId() != null ? dto.getId() : 0)
                 .durationMinutes(dto.getDurationMinutes())
                 .breakMinutes(dto.getBreakMinutes())
                 .completed(dto.getCompleted())
-                .createdAt(dto.getCreatedAt()) // if null, @CreationTimestamp will set it
-                .studySessions(studySession)
+                .subjects(subject)
+                .user(user)
                 .build();
     }
 
-    /**
-     * Convert Entity → DTO
-     */
+    // Convert Entity → DTO
     public static PomodorosDTO toDTO(Pomodoros entity) {
-        if (entity == null) {
-            return null;
-        }
+        if (entity == null) return null;
 
         PomodorosDTO dto = new PomodorosDTO();
         dto.setId(entity.getId());
@@ -39,8 +32,8 @@ public class PomodoroMapper {
         dto.setCompleted(entity.isCompleted());
         dto.setCreatedAt(entity.getCreatedAt());
 
-        if (entity.getStudySessions() != null) {
-            dto.setStudySessionId(entity.getStudySessions().getId());
+        if (entity.getSubjects() != null) {
+            dto.setSubjectId(entity.getSubjects().getId());
         }
 
         return dto;

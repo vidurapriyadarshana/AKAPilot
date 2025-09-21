@@ -17,10 +17,10 @@ public class PomodoroController {
 
     private final PomodoroService pomodoroService;
 
-    @GetMapping("/session/{sessionId}")
-    public ResponseEntity<ApiResponse> getPomodorosBySession(@PathVariable Long sessionId) {
-        List<PomodorosDTO> pomodoros = pomodoroService.getPomodorosBySession(sessionId);
-        return ResponseEntity.ok(new ApiResponse(200, "Success", pomodoros));
+    @GetMapping("/subject/{subjectId}")
+    public ResponseEntity<ApiResponse> getPomodorosBySubject(@PathVariable Long subjectId) {
+        List<PomodorosDTO> pomodoros = pomodoroService.getPomodorosBySubject(subjectId);
+        return ResponseEntity.ok(new ApiResponse(200, "Pomodoros fetched successfully", pomodoros));
     }
 
     @PostMapping("/create")
@@ -41,5 +41,11 @@ public class PomodoroController {
     public ResponseEntity<ApiResponse> deletePomodoro(@PathVariable Long id) {
         pomodoroService.deletePomodoro(id);
         return ResponseEntity.ok(new ApiResponse(200, "Pomodoro deleted successfully", null));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<ApiResponse> getAllPomodorosByUser() {
+        List<PomodorosDTO> pomodoros = pomodoroService.getAllPomodorosByUser();
+        return ResponseEntity.ok(new ApiResponse(200, "Pomodoros fetched for user successfully", pomodoros));
     }
 }

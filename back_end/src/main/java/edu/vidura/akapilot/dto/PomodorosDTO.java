@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 public class PomodorosDTO {
 
-    private Long id; // optional (no validation)
+    private Long id; // optional
 
     @NotNull(message = "Duration is required")
     @Min(value = 1, message = "Duration must be at least 1 minute")
@@ -22,8 +22,8 @@ public class PomodorosDTO {
     @NotNull(message = "Completed status is required")
     private Boolean completed;
 
-    private LocalDateTime createdAt; // optional (no validation)
+    private LocalDateTime createdAt;
 
-    @NotNull(message = "Study session ID is required")
-    private Long studySessionId;
+    @NotNull(message = "Subject ID is required")
+    private Long subjectId;
 }

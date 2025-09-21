@@ -6,7 +6,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 public interface PomodoroService {
-    List<PomodorosDTO> getPomodorosBySession(Long sessionId);
+    List<PomodorosDTO> getPomodorosBySubject(Long subjectId);
+    List<PomodorosDTO> getAllPomodorosByUser();
     PomodorosDTO startPomodoro(@Valid PomodorosDTO pomodorosDTO);
     PomodorosDTO updatePomodoro(Long id, @Valid PomodorosDTO pomodorosDTO);
     void deletePomodoro(Long id);

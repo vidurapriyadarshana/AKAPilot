@@ -32,7 +32,4 @@ public class StudySessions {
 
     @ManyToOne
     private Todos todos;
-
-    @OneToMany(mappedBy = "studySessions", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Pomodoros> pomodoros;
 }

@@ -1,0 +1,28 @@
+spring.application.name=back_end
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.username=root
+spring.datasource.password=Vidura999@
+spring.datasource.url=jdbc:mysql://localhost:3306/akapilotdb?createDatabaseIfNotExist=true
+
+
+#JPA Settings
+spring.jpa.generate-ddl=true
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto=create
+
+jwt.expiration=3600000
+jwt.secretKey=mysupersecretkeymysupersecretkey123456
+
+# Where to write logs
+logging.file.name=logs/application.log
+
+# Log level
+logging.level.root=INFO
+logging.level.edu.vidura.akapilot=DEBUG
+
+# Rotation
+logging.logback.rollingpolicy.file-name-pattern=logs/application-%d{yyyy-MM-dd}.%i.log
+logging.logback.rollingpolicy.max-file-size=10MB
+logging.logback.rollingpolicy.max-history=30

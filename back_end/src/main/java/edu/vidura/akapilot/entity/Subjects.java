@@ -30,7 +30,6 @@ public class Subjects {
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
-
     @ManyToOne
     private User user;
 
@@ -42,4 +41,7 @@ public class Subjects {
 
     @OneToMany(mappedBy = "subjects", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudySessions> studySessions;
+
+    @OneToMany(mappedBy = "subjects", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pomodoros> pomodoros;
 }

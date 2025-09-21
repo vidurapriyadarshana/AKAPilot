@@ -10,9 +10,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
 public class Pomodoros {
 
@@ -28,5 +28,8 @@ public class Pomodoros {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    private StudySessions studySessions;
+    private Subjects subjects;
+
+    @ManyToOne
+    private User user;
 }

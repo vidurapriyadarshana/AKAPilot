@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface PomodoroRepo extends JpaRepository<Pomodoros , Long> {
-    List<Pomodoros> findAllByStudySessions_Id(Long sessionId);
+public interface PomodoroRepo extends JpaRepository<Pomodoros, Long> {
+    List<Pomodoros> findAllBySubjects_Id(Long subjectId);
+    List<Pomodoros> findAllByUser_Id(Long userId);
 }
