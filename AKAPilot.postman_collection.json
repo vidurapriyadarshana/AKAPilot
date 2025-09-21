@@ -1,0 +1,1125 @@
+{
+	"info": {
+		"_postman_id": "aabfe8ba-89d9-4983-be01-837da833f1b8",
+		"name": "AKAPilot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40109554",
+		"_collection_link": "https://vidura-0899.postman.co/workspace/AKAPilot~e7ccd3b0-aae6-4913-8364-7e0e10f9e276/collection/40109554-aabfe8ba-89d9-4983-be01-837da833f1b8?action=share&source=collection_link&creator=40109554"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SignIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"subjectTwo\",\r\n  \"password\": \"viduraaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/signin",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"subjectOne\",\r\n  \"password\": \"viduraaa\",\r\n  \"email\": \"vidura@gmai.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/signup",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subjects",
+			"item": [
+				{
+					"name": "Get All Subjects",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU3NjgwMDU5LCJleHAiOjE3NTc2ODM2NTl9.cKl_mwRqYx4on-3NFOk6NhAs0ziU6V0RH8gZFZBM6tY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/subject",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"subject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Subject",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU3MTM4MDgwLCJleHAiOjE3NTcxNDE2ODB9.UnLe-4l9zQKt-YftuN4hDQhG-ip3tIwbJsdTU0vxGKQ\"",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Mathematics\",\r\n  \"color\": \"#FF5733\",\r\n  \"description\": \"Covers algebra, geometry, and calculus\",\r\n  \"difficulty\": \"HARD\",\r\n  \"priority\": \"HIGH\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/subject/save",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"subject",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Subject By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2Mzc5Mjk4LCJleHAiOjE3NTYzODI4OTh9.MCUufCbO9yCL-iZ5oeWYeehO7ZFUrJaVKFqzSIakLC0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Mathematics\",\r\n  \"color\": \"#FF5733\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/subject/11",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"subject",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Subject By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU3MTM4MTM0LCJleHAiOjE3NTcxNDE3MzR9._b-I6TaM1VhfCB6QHctOFtnopaa7n3e__PHmL5xdzBw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Physics\",\r\n  \"color\": \"#4287f5\",\r\n  \"description\": \"Focus on mechanics and thermodynamics\",\r\n  \"difficulty\": \"MEDIUM\",\r\n  \"priority\": \"MEDIUM\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/subject/update/13",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"subject",
+								"update",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Subject By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2Mzc5NTg4LCJleHAiOjE3NTYzODMxODh9.AoTVPSxGuwmH9oKBCESfCYQccdOIdGvln_WweT0ZnYE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Advanced Mathematics\",\r\n  \"color\": \"Red\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/subject/delete/11",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"subject",
+								"delete",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Memory Cards",
+			"item": [
+				{
+					"name": "Get All Memory Cards",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2Mzc5NzE3LCJleHAiOjE3NTYzODMzMTd9.KKKQl506DiV2jy9oeSWeLXat-iGqpEbRt50s6x99pRc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Advanced Mathematics\",\r\n  \"color\": \"Red\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/memory",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"memory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Memory Card",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2Mzc5NzE3LCJleHAiOjE3NTYzODMzMTd9.KKKQl506DiV2jy9oeSWeLXat-iGqpEbRt50s6x99pRc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"front\": \"What is the capital of France?\",\r\n  \"back\": \"Paris\",\r\n  \"status\": \"LEARNING\",   \r\n  \"deadline\": \"2025-09-05T12:00:00\",  \r\n  \"subjectId\": 5\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/memory/save",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"memory",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Memory Card By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2Mzc5NzE3LCJleHAiOjE3NTYzODMzMTd9.KKKQl506DiV2jy9oeSWeLXat-iGqpEbRt50s6x99pRc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"front\": \"Updated question here?\",\r\n  \"back\": \"Updated answer here\",\r\n  \"status\": \"MASTERED\",\r\n  \"deadline\": \"2025-09-10T18:00:00\",\r\n  \"subjectId\": 5\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/memory/update/9",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"memory",
+								"update",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Memory Card By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2Mzc5NzE3LCJleHAiOjE3NTYzODMzMTd9.KKKQl506DiV2jy9oeSWeLXat-iGqpEbRt50s6x99pRc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/memory/delete/9",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"memory",
+								"delete",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Memory Card By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2Mzc5NzE3LCJleHAiOjE3NTYzODMzMTd9.KKKQl506DiV2jy9oeSWeLXat-iGqpEbRt50s6x99pRc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/memory/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"memory",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "Create Todo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2Mzg2NzA5LCJleHAiOjE3NTYzOTAzMDl9.vOm9mnb1qsa2bBf4Z-R-IT4anxB0ztB7_qYSByFcJPs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Finish math \",\r\n  \"description\": \"Solve algebra exercises from chapter 5\",\r\n  \"dueDate\": \"2025-09-01T18:00:00\",\r\n  \"completed\": false,\r\n  \"priority\": \"HIGH\",\r\n  \"subjectId\": 5\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/todo/save",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"todo",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All todos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2NTYwMTg3LCJleHAiOjE3NTY1NjM3ODd9.1IrOzoWLNrAjVLuvuIsHC2g5JoUPzRgl2nC13KOFS8c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/todo",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get todo By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2NDU4NDczLCJleHAiOjE3NTY0NjIwNzN9.42XnQ62LRBpiZYowvvnctxKL0GImc6ax1KlMIKiKtfo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/todo/7",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"todo",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete todo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2NDU4NzYxLCJleHAiOjE3NTY0NjIzNjF9.0ANfyqrZJvMZvtrGKISlqJpWnWRL2hK8nBpcfmLQb64",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/todo/delete/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"todo",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete todo Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2NDU4ODI5LCJleHAiOjE3NTY0NjI0Mjl9.sLaxF4tOaWTRkkesia_TgBRL5yu9x7KbDmble7VTH0I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"title\": \"Now\",\r\n            \"description\": \"Now\",\r\n            \"dueDate\": \"2025-09-01T18:00:00\",\r\n            \"completed\": false,\r\n            \"priority\": \"HIGH\",\r\n            \"subjectId\": 5\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/todo/update/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"todo",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Study Session",
+			"item": [
+				{
+					"name": "Create Study Session",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjY1MDQxLCJleHAiOjE3NTgyNjg2NDF9.-RYsFKe5mPOjySnBFMHt2xM7SYC0Diz7_o52v_zWDDg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startTime\": \"2025-09-19T10:00:00\",\r\n  \"endTime\": \"2025-09-19T12:00:00\",\r\n  \"notes\": \"Focused on chapter 5 exercises\",\r\n  \"subjectId\": 31,\r\n  \"todoId\": 6\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/sessions/create",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sessions",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Sessions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0VHdvIiwiaWF0IjoxNzU2NTYwNzYyLCJleHAiOjE3NTY1NjQzNjJ9.htnK6BepLxt4BUdCbI61-q7vddSkJ2k7KKUFgCoGTFI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/sessions",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sessions By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2NTYxMTg4LCJleHAiOjE3NTY1NjQ3ODh9.kQnowz1shWEY-07fH38CbMJ_oWqXv-Q8y13n4SxXb0g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/sessions/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sessions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sessions By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2NTYyMTIyLCJleHAiOjE3NTY1NjU3MjJ9.J0uZLaRlX4tOM7azvvzgKbywRl3hJw_fe_NEjNHH7_w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startTime\": \"2025-08-27T10:00:00\",\r\n    \"endTime\": \"2025-08-27T12:00:00\",\r\n    \"notes\": \"UPdate\",\r\n    \"subjectId\": 5,\r\n    \"todoId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/sessions/update/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sessions",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sessions By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTdWJqZWN0T25lIiwiaWF0IjoxNzU2NTYyMTIyLCJleHAiOjE3NTY1NjU3MjJ9.J0uZLaRlX4tOM7azvvzgKbywRl3hJw_fe_NEjNHH7_w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/sessions/delete/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sessions",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Summary",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjY1MDQxLCJleHAiOjE3NTgyNjg2NDF9.-RYsFKe5mPOjySnBFMHt2xM7SYC0Diz7_o52v_zWDDg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"subjectTwo\",\r\n  \"password\": \"viduraaa\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/sessions/summary/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sessions",
+								"summary",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get To Day",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjY1MDQxLCJleHAiOjE3NTgyNjg2NDF9.-RYsFKe5mPOjySnBFMHt2xM7SYC0Diz7_o52v_zWDDg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/sessions/today",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sessions",
+								"today"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Card Review",
+			"item": [
+				{
+					"name": "Card Review Save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjEzMDQzLCJleHAiOjE3NTgyMTY2NDN9.T8BDWindNypEL9gfh0vbxqJ2pybNJ0gDZDyKwGmf3fA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"success\": false,\r\n  \"memoryCardId\": 20\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/reviews/save",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reviews",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Reviews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjY2OTIxLCJleHAiOjE3NTgyNzA1MjF9.qsio2jc9zsD-kBKe3q0Od4RiqUBSgMLqXoEpYkanbnU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/reviews",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Review For A Card",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjY2OTIxLCJleHAiOjE3NTgyNzA1MjF9.qsio2jc9zsD-kBKe3q0Od4RiqUBSgMLqXoEpYkanbnU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/reviews/card/20",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reviews",
+								"card",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Review For A User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjY2OTIxLCJleHAiOjE3NTgyNzA1MjF9.qsio2jc9zsD-kBKe3q0Od4RiqUBSgMLqXoEpYkanbnU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/reviews/user/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reviews",
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Review Summary",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjY2OTIxLCJleHAiOjE3NTgyNzA1MjF9.qsio2jc9zsD-kBKe3q0Od4RiqUBSgMLqXoEpYkanbnU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/reviews/summary",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"reviews",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pomodoro",
+			"item": [
+				{
+					"name": "Create Pomodoro",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWR1cmEiLCJpYXQiOjE3NTg0NDY3ODgsImV4cCI6MTc1ODQ1MDM4OH0.BghdGYUSEWcmLA6__05gOuQ8rLkbxGIkiXkl2jnQBSQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"durationMinutes\": 25,\r\n  \"breakMinutes\": 5,\r\n  \"completed\": false,   \r\n  \"subjectId\": 1                \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/pomodoros/create",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pomodoros",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pomodoros By Subject",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjYyODM1LCJleHAiOjE3NTgyNjY0MzV9.SPFJ50ILMyYp7TDcMxBvn2cCf4DyQShWIpRa95bl-qE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/pomodoros/session/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pomodoros",
+								"session",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Pomodoro",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjYyODM1LCJleHAiOjE3NTgyNjY0MzV9.SPFJ50ILMyYp7TDcMxBvn2cCf4DyQShWIpRa95bl-qE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/pomodoros/delete/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pomodoros",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Pomodoro",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWJqZWN0VHdvIiwiaWF0IjoxNzU4MjYzMzM3LCJleHAiOjE3NTgyNjY5Mzd9.DWEtwkRLDmxRlUdLqmNR2hFXUCOiP-ANeAfRYS3qRXw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"durationMinutes\": 25,\r\n  \"breakMinutes\": 5,\r\n  \"completed\": true,\r\n  \"studySessionId\": 5\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/pomodoros/update/3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pomodoros",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Pomodoro",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
