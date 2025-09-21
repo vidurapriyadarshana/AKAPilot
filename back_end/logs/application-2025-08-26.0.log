@@ -624,7 +624,7 @@ edu.vidura.akapilot.exception.ResourceNotFoundException: Subject not found with 
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.9.jar:6.2.9]
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.9.jar:6.2.9]
 	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89) ~[spring-aop-6.2.9.jar:6.2.9]
-	at edu.vidura.akapilot.aspect.LoggingAspect.logServiceExecutionTime(LoggingAspect.java:39) ~[classes/:na]
+	at edu.vidura.akapilot.aspect.MethodAspect.logServiceExecutionTime(LoggingAspect.java:39) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
 	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:649) ~[spring-aop-6.2.9.jar:6.2.9]

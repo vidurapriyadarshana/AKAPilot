@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Aspect
 @Component
-public class LoggingAspect {
+public class MethodAspect {
 
     // Log method entry for controllers
     @Before("execution(* edu.vidura.akapilot.controller..*(..))")
