@@ -1,11 +1,12 @@
 import type { Props } from "@/types/subjects/props";
+import type { Subject } from "@/types/subject";
 import {
   Book,
-  PlayCircle,
   Layers,
   EllipsisVertical,
   Trash2,
   Pencil,
+  TrendingUp,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import {
@@ -34,10 +35,15 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-  CardFooter,
 } from "@/components/ui/card";
 
-const SubjectCard: React.FC<Props> = ({ subject }) => {
+interface EnhancedProps extends Props {
+  cardsCount?: number;
+  studyTime?: number;
+  progress?: number;
+}
+
+const SubjectCard: React.FC<EnhancedProps> = ({ subject, cardsCount = 0, studyTime = 0, progress = 0 }) => {
   const { removeSubject } = useSubjectStore();
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -99,25 +105,19 @@ const SubjectCard: React.FC<Props> = ({ subject }) => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-2 text-sm">
+        <div className="grid grid-cols-3 gap-2 text-sm">
           <div className="flex items-center gap-1">
-            <Layers size={16} /> 38 Cards
+            <Layers size={16} /> {cardsCount} Cards
           </div>
           <div className="flex items-center gap-1">
-            <Book size={16} /> 6.8h Study
+            <Book size={16} /> {studyTime.toFixed(1)}h Study
+          </div>
+          <div className="flex items-center gap-1">
+            <TrendingUp size={16} /> {progress}% Progress
           </div>
         </div>
       </CardContent>
 
-      {/* Footer Actions */}
-      <CardFooter className="flex gap-2">
-        <Button className="flex-1" variant="default">
-          <PlayCircle size={16} className="mr-2" /> Study
-        </Button>
-        <Button className="flex-1" variant="outline">
-          <Layers size={16} className="mr-2" /> Cards
-        </Button>
-      </CardFooter>
 
       {/* Edit Modal */}
       {editOpen && (
