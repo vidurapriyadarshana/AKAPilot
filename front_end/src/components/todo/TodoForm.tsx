@@ -48,12 +48,17 @@ export default function TodoForm({ todoId }: TodoFormProps) {
   }, [fetchSubjects]);
 
   const handleSubmit = async () => {
+    if (!subjectId) {
+      alert("Please select a subject");
+      return;
+    }
+
     const payload = {
       title,
       description,
       dueDate,
       priority,
-      subjectId,
+      subjectId, // <-- always included
       completed: editingTodo?.completed ?? false,
     };
 
@@ -63,6 +68,7 @@ export default function TodoForm({ todoId }: TodoFormProps) {
       await addTodo(payload as any);
     }
 
+    // reset after saving
     setOpen(false);
     setTitle("");
     setDescription("");
@@ -70,6 +76,7 @@ export default function TodoForm({ todoId }: TodoFormProps) {
     setPriority("MEDIUM");
     setSubjectId(undefined);
   };
+
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

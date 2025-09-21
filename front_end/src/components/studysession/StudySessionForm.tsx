@@ -25,9 +25,13 @@ import { useStudySessionStore } from "@/store/studysessionStore";
 
 interface StudySessionFormProps {
   sessionId?: number; // optional for edit
+  preselectedTodo?: any; // for "Start Study Session"
 }
 
-export default function StudySessionForm({ sessionId }: StudySessionFormProps) {
+export default function StudySessionForm({
+  sessionId,
+  preselectedTodo,
+}: StudySessionFormProps) {
   const { addSession, editSession, sessions } = useStudySessionStore();
   const { subjects, fetchSubjects } = useSubjectStore();
   const { todos, fetchTodos } = useTodoStore();
@@ -39,10 +43,10 @@ export default function StudySessionForm({ sessionId }: StudySessionFormProps) {
   const [endTime, setEndTime] = useState(editingSession?.endTime || "");
   const [notes, setNotes] = useState(editingSession?.notes || "");
   const [subjectId, setSubjectId] = useState<number | undefined>(
-    editingSession?.subjectId
+    preselectedTodo?.subjectId || editingSession?.subjectId
   );
   const [todoId, setTodoId] = useState<number | undefined>(
-    editingSession?.todoId
+    preselectedTodo?.id || editingSession?.todoId
   );
 
   useEffect(() => {
@@ -66,7 +70,7 @@ export default function StudySessionForm({ sessionId }: StudySessionFormProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size="sm" variant={sessionId ? "outline" : "default"}>
-          {sessionId ? "Edit" : "Add Session"}
+          {sessionId ? "Edit" : preselectedTodo ? "Start Study Session" : "Add Session"}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-md">

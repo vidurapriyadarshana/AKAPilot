@@ -7,8 +7,8 @@ import Layout from "../layout/Layout";
 import Subbjects from "../pages/Dashboard/Subjects";
 import MemoryCards from "../pages/Dashboard/MemoryCards";
 import StudySession from "../pages/Dashboard/StudySession";
-import PomodoroTimer from "../pages/Dashboard/PomodoroTimer";
 import Analytics from "../pages/Dashboard/Analytics";
+import Pomodoro from "@/pages/Dashboard/Pomodoro";
 
 export default function AppRouter() {
   return (
@@ -25,7 +25,7 @@ export default function AppRouter() {
             <Route path="/subjects" element={<Subbjects />} />
             <Route path="/memory-cards" element={<MemoryCards />} />
             <Route path="/study-session" element={<StudySession />} />
-            <Route path="/pomodoro-timer" element={<PomodoroTimer />} />
+            <Route path="/pomodoro-timer" element={<Pomodoro />} />
             <Route path="/analytics" element={<Analytics />} />
           </Route>
         </Route>

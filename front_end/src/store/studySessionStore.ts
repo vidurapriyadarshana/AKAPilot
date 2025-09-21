@@ -33,9 +33,12 @@ export const useStudySessionStore = create<StudySessionState>((set) => ({
   fetchSessions: async () => {
     try {
       set({ loading: true });
+      console.log('Store: Fetching sessions...');
       const res = await getAllStudySessions();
+      console.log('Store: Sessions fetched:', res.data);
       set({ sessions: res.data, loading: false });
     } catch (err) {
+      console.error('Store: Failed to fetch sessions:', err);
       toast.error("Failed to load study sessions");
       set({ loading: false });
     }
@@ -56,11 +59,15 @@ export const useStudySessionStore = create<StudySessionState>((set) => ({
   // Add new session
   addSession: async (session) => {
     try {
+      console.log('Store: Creating session with data:', session);
       const res = await createStudySession(session);
+      console.log('Store: Session created successfully:', res);
       set((state) => ({ sessions: [...state.sessions, res.data] }));
       toast.success("Study session created successfully");
     } catch (err) {
+      console.error('Store: Session creation failed:', err);
       toast.error("Failed to create session");
+      throw err; // Re-throw to let the component handle it
     }
   },
 

@@ -1,8 +1,10 @@
-import React from 'react'
+import StudySessionDashboard from '@/components/studysession/StudySessionDashboard'
 
 const Analytics = () => {
   return (
-    <div>Analytics</div>
+    <div>
+      <StudySessionDashboard />
+    </div>
   )
 }
 
