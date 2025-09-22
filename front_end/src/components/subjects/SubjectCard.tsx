@@ -1,5 +1,4 @@
 import type { Props } from "@/types/subjects/props";
-import type { Subject } from "@/types/subject";
 import {
   Book,
   Layers,
@@ -8,7 +7,6 @@ import {
   Pencil,
   TrendingUp,
 } from "lucide-react";
-import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,

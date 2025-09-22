@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useStudySessionStore } from "@/store/studysessionStore";
+import { useStudySessionStore } from "@/store/studySessionStore";
 
 interface StartSessionModalProps {
   todo: any;

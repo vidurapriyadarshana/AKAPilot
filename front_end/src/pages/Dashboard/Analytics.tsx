@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useStudySessionStore } from "@/store/studysessionStore";
+import { useStudySessionStore } from "@/store/studySessionStore";
 import { useCardReviewStore } from "@/store/cardReviewStore";
 import { useSubjectStore } from "@/store/subjectStore";
 import { useMemoryCardStore } from "@/store/memorycardStore";

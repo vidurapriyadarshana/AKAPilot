@@ -32,7 +32,7 @@ export const useMemoryCardStore = create<MemoryCardState>((set) => ({
       set({ loading: true, error: null });
       const res = await getMemoryCards();
       set({ memoryCards: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       set({ error: "Failed to load memory cards", loading: false });
       toast.error("Failed to load memory cards");
     }

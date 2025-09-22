@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import StudySessionForm from "./StudySessionForm";
-import { useStudySessionStore } from "@/store/studysessionStore";
+import { useStudySessionStore } from "@/store/studySessionStore";
 
 interface StudySessionCardProps {
   session: any;

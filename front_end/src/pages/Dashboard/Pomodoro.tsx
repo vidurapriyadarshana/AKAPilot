@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Play, Pause, Square, RotateCcw, Clock, CheckCircle, Brain } from "lucide-react";
 import { toast } from "sonner";
-import type { Pomodoro } from "@/types/pomodoro";
+import type { Pomodoro as PomodoroType } from "@/types/pomodoro";
 
 const Pomodoro = () => {
   const { allPomodoros, fetchAllPomodorosByUser, addPomodoro } = usePomodoroStore();
@@ -18,7 +18,7 @@ const Pomodoro = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [sessionStarted, setSessionStarted] = useState(false);
-  const [startTime, setStartTime] = useState<Date | null>(null);
+  const [, setStartTime] = useState<Date | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0);
   
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -127,7 +127,7 @@ const Pomodoro = () => {
     if (!selectedSubjectId) return;
 
     try {
-      const pomodoroData: Pomodoro = {
+      const pomodoroData: PomodoroType = {
         durationMinutes: 25,
         breakMinutes: 5,
         completed: completed,
@@ -136,7 +136,7 @@ const Pomodoro = () => {
 
       await addPomodoro(pomodoroData);
       fetchAllPomodorosByUser(); // Refresh data
-    } catch (error) {
+    } catch (_error) {
       toast.error("Failed to save pomodoro session");
     }
   };

@@ -35,7 +35,7 @@ export const useTodoStore = create<TodoState>((set) => ({
       set({ loading: true });
       const res = await getTodos();
       set({ todos: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load todos");
       set({ loading: false });
     }
@@ -47,7 +47,7 @@ export const useTodoStore = create<TodoState>((set) => ({
       set({ loading: true });
       const res = await getTodoById(id);
       set({ currentTodo: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load todo");
       set({ loading: false });
     }
@@ -59,7 +59,7 @@ export const useTodoStore = create<TodoState>((set) => ({
       const res = await createTodo(todo);
       set((state) => ({ todos: [...state.todos, res.data] }));
       toast.success("Todo created successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to create todo");
     }
   },
@@ -73,7 +73,7 @@ export const useTodoStore = create<TodoState>((set) => ({
         currentTodo: state.currentTodo?.id === id ? res.data : state.currentTodo,
       }));
       toast.success("Todo updated successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to update todo");
     }
   },
@@ -87,7 +87,7 @@ export const useTodoStore = create<TodoState>((set) => ({
         currentTodo: state.currentTodo?.id === id ? null : state.currentTodo,
       }));
       toast.success("Todo deleted successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to delete todo");
     }
   },
@@ -103,7 +103,7 @@ export const useTodoStore = create<TodoState>((set) => ({
         currentTodo: state.currentTodo?.id === id ? res.data : state.currentTodo,
       }));
       toast.success("Todo completed successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to complete todo");
     }
   },

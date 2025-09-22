@@ -33,7 +33,7 @@ export const useSubjectStore = create<SubjectState>((set) => ({
       set({ loading: true });
       const res = await getSubjects();
       set({ subjects: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load subjects");
       set({ loading: false });
     }
@@ -45,7 +45,7 @@ export const useSubjectStore = create<SubjectState>((set) => ({
       set({ loading: true });
       const res = await getSubject(id);
       set({ currentSubject: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load subject");
       set({ loading: false });
     }
@@ -57,7 +57,7 @@ export const useSubjectStore = create<SubjectState>((set) => ({
       const res = await createSubject(subject);
       set((state) => ({ subjects: [...state.subjects, res.data] }));
       toast.success("Subject added successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to create subject");
     }
   },
@@ -71,7 +71,7 @@ export const useSubjectStore = create<SubjectState>((set) => ({
         currentSubject: state.currentSubject?.id === id ? res.data : state.currentSubject,
       }));
       toast.success("Subject updated successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to update subject");
     }
   },
@@ -85,7 +85,7 @@ export const useSubjectStore = create<SubjectState>((set) => ({
         currentSubject: state.currentSubject?.id === id ? null : state.currentSubject,
       }));
       toast.success("Subject deleted successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to delete subject");
     }
   },

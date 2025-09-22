@@ -45,7 +45,7 @@ const MemoryCardItem: React.FC<Props> = ({ memorycard }) => {
     try {
       await removeMemoryCard(memorycard.id);
       setDeleteOpen(false);
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to delete memory card");
     }
   };

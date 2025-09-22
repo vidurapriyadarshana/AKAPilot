@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useStudySessionStore } from "@/store/studysessionStore";
+import { useStudySessionStore } from "@/store/studySessionStore";
 import { useSubjectStore } from "@/store/subjectStore";
 import { useTodoStore } from "@/store/todoStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

@@ -9,12 +9,12 @@ interface PomodoroHistoryProps {
 }
 
 export default function PomodoroHistory({ sessionId }: PomodoroHistoryProps) {
-  const { pomodoros, fetchPomodorosBySession, loading } = usePomodoroStore();
+  const { pomodoros, fetchPomodorosBySubject, loading } = usePomodoroStore();
 
   // Fetch on mount and whenever sessionId changes
   useEffect(() => {
-    fetchPomodorosBySession(sessionId);
-  }, [fetchPomodorosBySession, sessionId]);
+    fetchPomodorosBySubject(sessionId);
+  }, [fetchPomodorosBySubject, sessionId]);
 
   if (loading) return <p>Loading pomodoros...</p>;
 

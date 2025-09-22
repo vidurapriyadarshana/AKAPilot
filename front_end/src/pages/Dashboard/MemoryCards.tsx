@@ -99,7 +99,7 @@ const MemoryCards = () => {
       // Close review
       setReviewCard(null);
       setShowAnswer(false);
-    } catch (error) {
+    } catch (_error) {
       toast.error("Failed to save review");
     }
   };

@@ -33,7 +33,7 @@ export const useCardReviewStore = create<CardReviewState>((set) => ({
       const res = await createCardReview(review);
       set((state) => ({ cardReviews: [...state.cardReviews, res.data] }));
       toast.success("Card review added successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to create card review");
     }
   },
@@ -43,7 +43,7 @@ export const useCardReviewStore = create<CardReviewState>((set) => ({
       set({ loading: true });
       const res = await getAllCardReviewsForUser();
       set({ cardReviews: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load card reviews");
       set({ loading: false });
     }
@@ -54,7 +54,7 @@ export const useCardReviewStore = create<CardReviewState>((set) => ({
       set({ loading: true });
       const res = await getCardReviewsByCardId(cardId);
       set({ cardReviews: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load reviews for card");
       set({ loading: false });
     }
@@ -65,7 +65,7 @@ export const useCardReviewStore = create<CardReviewState>((set) => ({
       set({ loading: true });
       const res = await getCardReviewsByUserId(userId);
       set({ cardReviews: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load reviews for user");
       set({ loading: false });
     }
@@ -76,7 +76,7 @@ export const useCardReviewStore = create<CardReviewState>((set) => ({
       set({ loading: true });
       const res = await getCardReviewSummary();
       set({ reviewSummary: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load review summary");
       set({ loading: false });
     }

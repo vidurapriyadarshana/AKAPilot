@@ -33,7 +33,7 @@ export const usePomodoroStore = create<PomodoroState>((set) => ({
       set({ loading: true });
       const res = await getPomodorosBySubject(subjectId);
       set({ pomodoros: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load pomodoros");
       set({ loading: false });
     }
@@ -44,7 +44,7 @@ export const usePomodoroStore = create<PomodoroState>((set) => ({
       set({ loading: true });
       const res = await getAllPomodorosByUser();
       set({ allPomodoros: res.data, loading: false });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to load pomodoros");
       set({ loading: false });
     }
@@ -55,7 +55,7 @@ export const usePomodoroStore = create<PomodoroState>((set) => ({
       const res = await createPomodoro(pomodoro);
       set((state) => ({ pomodoros: [...state.pomodoros, res.data] }));
       toast.success("Pomodoro created successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to create pomodoro");
     }
   },
@@ -67,7 +67,7 @@ export const usePomodoroStore = create<PomodoroState>((set) => ({
         pomodoros: state.pomodoros.map((p) => (p.id === id ? res.data : p)),
       }));
       toast.success("Pomodoro updated successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to update pomodoro");
     }
   },
@@ -79,7 +79,7 @@ export const usePomodoroStore = create<PomodoroState>((set) => ({
         pomodoros: state.pomodoros.filter((p) => p.id !== id),
       }));
       toast.success("Pomodoro deleted successfully");
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to delete pomodoro");
     }
   },

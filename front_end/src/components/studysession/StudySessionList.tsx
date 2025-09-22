@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import StudySessionCard from "./StudySessionCard";
 import StudySessionForm from "./StudySessionForm";
-import { useStudySessionStore } from "@/store/studysessionStore";
+import { useStudySessionStore } from "@/store/studySessionStore";
 
 export default function StudySessionList() {
   const { sessions, fetchSessions, loading } = useStudySessionStore();

@@ -55,7 +55,7 @@ const AddTodoDialog = () => {
         priority: "LOW",
         subjectId: 0,
       });
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to create todo");
     }
   };

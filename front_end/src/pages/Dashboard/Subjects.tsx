@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSubjectStore } from "@/store/subjectStore";
 import { useMemoryCardStore } from "@/store/memorycardStore";
-import { useStudySessionStore } from "@/store/studysessionStore";
+import { useStudySessionStore } from "@/store/studySessionStore";
 import { useCardReviewStore } from "@/store/cardReviewStore";
 import SubjectCard from "@/components/subjects/SubjectCard";
 import { Button } from "@/components/ui/button";
